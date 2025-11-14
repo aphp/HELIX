@@ -1,0 +1,176 @@
+
+configuration:
+  jupyterhub:
+
+    profiles:
+      user: 
+        - displayName: "Jupyter EDS Base Notebook"
+          slug: "eds-base-dev"
+          image: "aphp/jupyterlab:eds-base-notebook_ubuntu-22.04"
+          imagePullPolicy: "Always"
+        - displayName: "Jupyter EDS OCAML Notebook"
+          slug: "eds-ocaml-dev"
+          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04"
+          imagePullPolicy: "Always"
+        - displayName: "Jupyter Minimal Notebook"
+          slug: "minimal"
+          image: "quay.io/jupyter/minimal-notebook:latest"
+          imagePullPolicy: "Always"
+        - displayName: "Jupyter Datascience Notebook"
+          slug: "datascience"
+          image: "quay.io/jupyter/datascience-notebook:latest"
+          imagePullPolicy: "Always"
+
+      collaboration:
+
+        - displayName: "Jupyter EDS Base Notebook"
+          slug: "eds-base-dev"
+          image: "aphp/jupyterlab:eds-base-notebook_ubuntu-22.04"
+          imagePullPolicy: "Always"
+        - displayName: "Jupyter EDS OCAML Notebook"
+          slug: "eds-ocaml-dev"
+          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04"
+          imagePullPolicy: "Always"
+
+persistence:
+  createPVC:
+  - name: data-hdd-pvc
+    storageClassName: "csi-cephfs-hdd-sc"
+    accessMode: "ReadWriteOnce"
+    size: "5Gi"
+  - name: data-ssd-pvc 
+    storageClassName: "csi-cephfs-sc"
+    accessMode: "ReadWriteOnce"
+    size: "5Gi"
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+jupyterhub:
+  enabled: true
+  debug:
+    enabled: false
+
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+    - <project>-helix.eds.aphp.fr
+
+  hub:
+    baseUrl: /jupyter
+    db:
+      type: sqlite-pvc
+      upgrade:
+      pvc:
+        annotations: {}
+        selector: {}
+        accessModes:
+          - ReadWriteMany
+        storage: 20Gi
+        storageClassName: csi-cephfs-sc
+
+    extraEnv:
+      COLLAB_USER_NAME: "jhub-next-<project>-collab"
+      JHUB_DEFAULT_URL: "/jupyter/hub/spawn/jhub-next-preprod-collab"
+      OIDC_AUTHORIZE_URL: "https://auth.eds.aphp.fr/auth/realms/ID-Interne/protocol/openid-connect/auth"
+      OIDC_CALLBACK_URL: "https://preprod-helix.eds.aphp.fr/jupyter/hub/oauth_callback"
+      OIDC_TOKEN_URL: "https://auth.eds.aphp.fr/auth/realms/ID-Interne/protocol/openid-connect/token"
+      OIDC_USERDATA_URL: "https://auth.eds.aphp.fr/auth/realms/ID-Interne/protocol/openid-connect/userinfo"
+      OIDC_REQUESTED_SCOPES: "openid"
+      OIDC_USERNAME_CLAIM: "name"
+      OIDC_CLAIM_GROUPS_KEY: "groups"
+      OIDC_ALLOWED_GROUPS: "/BBS_DA-N-<project>"
+      OIDC_ADMIN_GROUPS: "/BBS_DA-N-<project>"
+      OIDC_CLIENT_ID:
+        valueFrom:
+          secretKeyRef:
+            name: "oidc-helix-preprod"
+            key: "client-id"
+
+      OIDC_CLIENT_SECRET: 
+        valueFrom:
+          secretKeyRef:
+            name: "oidc-helix-preprod"
+            key: "client-secret"
+
+    redirectToServer: false
+
+    extraFiles:
+      collaboration_code-py:
+        mountPath: "/usr/local/etc/jupyterhub/jupyterhub_config.d/00-collaboration.py"
+      oauth_authenticator_config-py:
+        mountPath: "/usr/local/etc/jupyterhub/jupyterhub_config.d/01-oauth_authenticator_config.py"
+      custom_forms_code-py:
+        mountPath: "/usr/local/etc/jupyterhub/jupyterhub_config.d/02-custom_forms.py"
+
+
+  scheduling:
+    userScheduler:
+      enabled: false
+    podPriority:
+      enabled: false
+    userPlaceholder:
+      enabled: false
+
+  proxy:
+    service:
+      type: ClusterIP
+
+  prePuller:
+    continuous:
+      enabled: false
+    hook:
+      enabled: false
+
+  cull:
+    enabled: true
+    timeout: 3600
+    every: 300
+
+  singleuser:
+    podNameTemplate: "jupyter-{unescaped_username}"
+    extraLabels:
+      app.kubernetes.io/instance: id-pfm-helix-<project>
+    lifecycleHooks:
+      postStart:
+        exec:
+          command:
+          - "sh"
+          - "-c"
+          - "if [ -d /tmp/home ]; then cp -rf /tmp/home/.[^.]* /home/jovyan/; fi"
+
+    extraEnv:
+      PYDEVD_DISABLE_FILE_VALIDATION: "1"
+
+    storage:
+      dynamic:
+        storageClass: csi-cephfs-sc
+        storageAccessModes:
+        - ReadWriteMany
+      capacity: 20Gi
+
+      extraVolumes:
+      - name: <project>-collab-data-hdd
+        persistentVolumeClaim:
+          claimName: data-jhub-<project>-hdd-pvc
+      - name: <project>-collab-data-ssd
+        persistentVolumeClaim:
+          claimName: data-jhub-<project>-ssd-pvc
+      extraVolumeMounts:
+      - mountPath: /data/ssd/jhub-<project>
+        name: <project>-collab-data-ssd
+      - mountPath: /data/hdd/jhub-<project>
+        name: <project>-collab-data-hdd
+
+    cpu:
+      limit: 4
+      guarantee: 1
+    memory:
+      limit: 16G
+      guarantee: 4G
+
+
