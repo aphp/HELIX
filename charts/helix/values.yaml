@@ -331,8 +331,6 @@ jupyterhub:
       # @default -- 5Gi
       capacity: "5Gi"
 
-  
-
     cpu:
       limit: 5
       guarantee: 2

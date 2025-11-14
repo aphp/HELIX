@@ -1,0 +1,339 @@
+# Default values for the helix.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Custom Helm Release name.
+# @section -- Helm Release settings
+nameOverride: ""
+
+# -- Custom Helm Release full name.
+# @section -- Helm Release settings
+fullnameOverride: ""
+
+# -- HELIX settings.
+# @section -- HELIX settings
+# @default -- Configuration fitting an APHP-EDS context
+configuration:
+  # -- HELIX settings regarding JupyterHub.
+  # @section -- HELIX settings
+  # @default -- JupyterHub configuration override fitting an APHP-EDS context
+  jupyterhub:
+    # -- HELIX settings regarding Jupyter Notebbok Singleuser (jovyan user inside pods).
+    # @section -- HELIX settings
+    # @default -- No override of existing Z2JHK8S Chart Configuration.
+    singleuser:
+      # -- Supports UID/GID manipulation to match custom volume persmisisons
+      # @section -- HELIX settings
+      # @default -- No override of existing Z2JHK8S Chart Configuration.
+      ownership:
+        # -- Overrides the default "jovyan" user UID
+        # @section -- HELIX settings
+        uidOverride: 1000
+        # -- Extra group binding for the default user (jovyan). Must be an array of GIDs of form [123,456]
+        # @section -- HELIX settings
+        addToGroups: []
+        #- 123
+        #- 543
+
+    # -- Specifies JupyterHub's available profile, containing the notebook's docker images.
+    # @section -- HELIX settings
+    # @default -- Single-ser and collaborative profiles fitting an APHP-EDS context.
+    profiles:
+      # -- Single-user profiles, used when a user spawns his own JLab environment.
+      # @section -- HELIX settings
+      # @default -- APHP EDS Base and OCAML notebook profiles, alongside Jupyter Project official 
+      #             minimal and datascience notebooks
+      user: 
+        # configuration.jupyterhub.profiles.user[0].displayName -- Profile's name to be display to the user.
+        # @section -- HELIX settings
+        - displayName: "Jupyter EDS Base Notebook - DEV"
+          # configuration.jupyterhub.profiles.user[0].slug -- Profile's slug.
+          # @section -- HELIX settings
+          slug: "eds-base-dev"
+          # configuration.jupyterhub.profiles.user[0].image -- Image to be used with that profile.
+          # @section -- HELIX settings
+          image: "aphp/jupyterlab:eds-base-notebook_ubuntu-22.04-dev"
+          # configuration.jupyterhub.profiles.user[0].imagePullPolicy -- Image's Pull Policy.
+          # @section -- HELIX settings
+          imagePullPolicy: "Always"
+        - displayName: "Jupyter EDS OCAML Notebook - DEV"
+          slug: "eds-ocaml-dev"
+          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04-dev"
+          imagePullPolicy: "Always"
+        - displayName: "Jupyter Minimal Notebook"
+          slug: "minimal"
+          image: "quay.io/jupyter/minimal-notebook:latest"
+          imagePullPolicy: "Always"
+        - displayName: "Jupyter Datascience Notebook"
+          slug: "datascience"
+          image: "quay.io/jupyter/datascience-notebook:latest"
+          imagePullPolicy: "Always"
+
+      # -- Collaboration profiles, used when a user spawns a collaborative JLab.
+      # @section -- HELIX settings
+      # @default -- APHP EDS Base and OCAML notebook profiles.
+      collaboration:
+        # configuration.jupyterhub.profiles.collaboration[0].displayName -- Image name to be displayed in the profile list.
+        # @section -- HELIX settings
+        - displayName: "Jupyter EDS Base Notebook - DEV"
+          # configuration.jupyterhub.profiles.collaboration[0].slug -- Profile's slug.
+          # @section -- HELIX settings
+          slug: "eds-base-dev"
+          # configuration.jupyterhub.profiles.collaboration[0].image -- Image to be used with that profile.
+          # @section -- HELIX settings
+          image: "aphp/jupyterlab:eds-base-notebook_ubuntu-22.04-dev"
+          # configuration.jupyterhub.profiles.collaboration[0].imagePullPolicy -- Image's Pull Policy.
+          # @section -- HELIX settings
+          imagePullPolicy: "Always"
+        - displayName: "Jupyter EDS OCAML Notebook - DEV"
+          slug: "eds-ocaml-dev"
+          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04-dev"
+          imagePullPolicy: "Always"
+
+# Settings related to persistence management across the HELIX's applications.
+persistence:
+  # -- Creates PVCs to be used across the HELIX's applications.
+  # @section -- HELIX persistence settings
+  createPVC: []
+
+# -- Settings related to the HELIX's Service Account.
+# @section -- HELIX ServiceAccount settings
+# @default -- Creation of an automounted dedicated ServiceAccount
+serviceAccount:
+  # -- Create ServiceAccount
+  # @section -- HELIX ServiceAccount settings
+  # @default -- true
+  create: true
+  # -- Automount ServiceAccount
+  # @section -- HELIX ServiceAccount settings
+  # @default -- true
+  automount: true
+  # -- Custom Annotations for the ServiceAccount
+  # @section -- HELIX ServiceAccount settings
+  # @default -- true
+  annotations: {}
+  # -- Name of the ServiceAccount
+  # @section -- HELIX ServiceAccount settings
+  # @default -- true
+  name: ""
+
+# JupyterHub Chart settings.
+jupyterhub:
+  # -- If true, enables the deployment of the JupyterHub Chart. 
+  # @section -- JupyterHub Chart settings
+  # @default -- true
+  enabled: true
+  debug:
+    # -- Increases the log level throughout the resources in the Helm chart.
+    # @section -- JupyterHub Chart settings
+    # @default -- false
+    enabled: false
+
+
+  ingress:
+    # -- Enable the creation of a Kubernetes Ingress to proxy-public service.
+    # @section -- JupyterHub Chart settings
+    # @default -- true
+    enabled: true
+    # -- Maps directly to the Ingress resource’s `spec.ingressClassName``.
+    # @section -- JupyterHub Chart settings
+    # @default -- nginx
+    ingressClassName: "nginx"
+    annotations:
+      # -- Annotations to apply to the Ingress resource.
+      # @section -- JupyterHub Chart settings
+      # @default -- nginx.ingress.kubernetes.io/app-root: "/jupyter"
+      nginx.ingress.kubernetes.io/app-root: "/jupyter"
+    # -- List of hosts to route requests to the proxy.
+    # @section -- JupyterHub Chart settings
+    # @default -- localhost
+    hosts:
+    - "localhost"
+    # -- TLS configurations for Ingress.
+    # @section -- JupyterHub Chart settings
+    # @default -- []
+    tls: []
+
+
+  hub:
+    # -- Set custom image name, tag, pullPolicy, or pullSecrets for the pod. 
+    # @section -- JupyterHub Chart settings
+    # @default -- Jupyterhub 4.1.6
+    image:
+      # -- Configures the Pod’s spec.imagePullPolicy.
+      # @section -- JupyterHub Chart settings
+      # @default -- "Always"
+      pullPolicy: "Always"
+
+    resources:
+      requests:
+        memory: "2Gi"
+        cpu: "0.5"
+      limits:
+        memory: "4Gi"
+        cpu: "1.5"    
+
+    # -- Enforce prometheus scrapper to be authenticated to this JupyterHub instance.
+    # @section -- JupyterHub Chart settings
+    # @default -- false
+    authenticatePrometheus: false 
+
+    baseUrl: "/jupyter"
+    db:
+      # -- Type of database backend to use for the hub database. The Hub requires a 
+      #    persistent database to function, and this lets you specify where it should be stored.
+      # @section -- JupyterHub Chart settings
+      # @default -- "sqlite-pvc"
+      type: "sqlite-pvc"
+      # -- Customize the Persistent Volume Claim used when hub.db.type is sqlite-pvc.
+      # @section -- JupyterHub Chart settings
+      # @default -- 2GB RWX PVC
+      pvc:
+        accessModes:
+          - "ReadWriteOnce"
+        storage: "2Gi"
+        storageClassName: "standard"
+
+    # -- Extra environment variables that should be set for the hub pod.
+    # @section -- JupyterHub Chart settings
+    # @default -- Sets the default URL the user is redirected to, and the name of the project. 
+    extraEnv:
+      PROJECT: "helix-local"
+      JHUB_DEFAULT_URL: "/jupyter/hub/spawn/helix-local"
+
+    # -- JupyterHub native configuration, see the JupyterHub documentation for more information.
+    # @section -- JupyterHub Chart settings
+    # @default -- false
+    redirectToServer: false
+
+    # -- Additional volume mounts for the Container. Use a k8s native syntax.
+    # @section -- JupyterHub Chart settings
+    # @default -- Extra ConfigMap mapped in Jupyter Hub's config dir.
+    extraVolumeMounts:
+      - name: "jupyterhub-extra-config"
+        mountPath: "/usr/local/etc/jupyterhub/jupyterhub_config.d"
+
+    # -- Additional volumes for the Pod. Use a k8s native syntax.
+    # @section -- JupyterHub Chart settings
+    # @default -- Extra ConfigMap mapped in Jupyter Hub's config dir.
+    extraVolumes:
+      - name: "jupyterhub-extra-config"
+        configMap:
+          name: "jupyterhub-extra-config"
+
+  scheduling:
+    userScheduler:
+      # -- The user scheduler is making sure that user pods are scheduled tight on nodes, 
+      #    this is useful for autoscaling of user node pools.
+      # @section -- JupyterHub Chart settings
+      # @default -- false
+      enabled: false
+    podPriority:
+      # -- Pod Priority is used to allow real users evict user placeholder pods that in turn
+      #    by entering a Pending state can trigger a scale up by a cluster autoscaler.
+      # @section -- JupyterHub Chart settings
+      # @default -- false
+      enabled: false
+    userPlaceholder:
+      # -- User placeholders simulate users but will thanks to PodPriority be evicted by the 
+      #    cluster autoscaler if a real user shows up. 
+      # @section -- JupyterHub Chart settings
+      # @default -- false
+      enabled: false
+
+
+  proxy:
+    chp:
+      containerSecurityContext: 
+        allowPrivilegeEscalation: false
+      resources:
+        requests:
+          memory: "2Gi"
+          cpu: "0.5"
+        limits:
+          memory: "4Gi"
+          cpu: "1.5"
+
+    service:
+      # -- Default ClusterIP. See the Kubernetes docs to learn more about service types.
+      # @section -- JupyterHub Chart settings
+      # @default -- "ClusterIP"
+      type: "ClusterIP"
+
+
+  prePuller:
+    continuous:
+      # -- See the optimization section for more details.
+      # @section -- JupyterHub Chart settings
+      # @default -- Disabled
+      enabled: false
+    hook:
+    # -- See the optimization section for more details
+    # @section -- JupyterHub Chart settings
+    # @default -- Disabled -- 
+      enabled: false
+
+  cull:
+    # -- Enable/disable use of jupyter-idle-culler.
+    # @section -- JupyterHub Chart settings
+    # @default -- false
+    enabled: false
+    # -- Maximum lifespan (in seconds) of a singleuser pod.
+    # @section -- JupyterHub Chart settings
+    # @default -- 93600s (26 hours)
+    maxAge: 93600
+    # -- See the --timeout flag. Default: 3600.
+    # @section -- JupyterHub Chart settings
+    # @default -- 3600s (1 hour)
+    timeout: 3600
+    # -- See the --cull-every flag. Default: 600
+    # @section -- JupyterHub Chart settings
+    # @default -- 300 (5 minutes)
+    every: 300
+
+  singleuser:
+    # -- Passthrough configuration for KubeSpawner.pod_name_template.
+    # @section -- JupyterHub Chart settings
+    # @default -- "jupyter-{unescaped_username}"
+    podNameTemplate: "jupyter-{unescaped_username}"
+
+    cloudMetadata:
+      blockWithIptables: false
+
+    extraEnv:
+      PYDEVD_DISABLE_FILE_VALIDATION: "1"
+
+    # This section configures KubeSpawner directly to some extent but also indirectly through 
+    # Helm chart specific configuration options such as singleuser.storage.type.
+    storage:
+      # -- Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically
+      #    provision storage for the PVC that KubeSpawner will create.
+      # @section -- JupyterHub Chart settings
+      # @default -- Dynamic 5Gi PVC for the home volume.
+      dynamic:
+        # -- Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically 
+        #    provision storage for the PVC that KubeSpawner will create.
+        # @section -- JupyterHub Chart settings
+        # @default -- "standard"
+        storageClass: "standard"
+        # -- Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically 
+        #    provision storage for the PVC that KubeSpawner will create.
+        # @section -- JupyterHub Chart settings
+        # @default -- "volume-{username}{servername}"
+        volumeNameTemplate: "volume-{username}{servername}"
+        # -- Configures KubeSpawner.storage_access_modes.
+        # @section -- JupyterHub Chart settings
+        # @default -- "ReadWriteOnce"
+        storageAccessModes:
+        - "ReadWriteOnce"
+      # -- Configures KubeSpawner.storage_capacity.
+      # @section -- JupyterHub Chart settings
+      # @default -- 5Gi
+      capacity: "5Gi"
+
+    cpu:
+      limit: 5
+      guarantee: 2
+    memory:
+      limit: "16G"
+      guarantee: "8G"
