@@ -22,7 +22,7 @@ Kubernetes: `>=v1.24.0-0`
 
 This Chart allows the HELIX to be deployed as follows :
 
-![INCEpTION Chart's deployment architecture](./src/helmchart-helix.drawio.png)
+TODO
 
 ## Installing the Chart
 
