@@ -11,4 +11,4 @@ Security Updates are currently concerning the following versions :
 
 ## Reporting a Vulnerability
 
-If you wish to report any security issues, please write an email to one of the persons listed as maintainers in the [Chart description file](./charts/helix/Chart.yaml).
+If you wish to report any security issues, please write an email to one of the persons listed as maintainers in the [MAINTAINERS file](./MAINTAINERS.md) of this repository.
