@@ -1,8 +1,0 @@
-HELIX deployed! 
-
-You can connect to this HELIX application(s) with the following URL(s):
-{{- if .Values.jupyterhub.ingress.enabled }}
-  {{- range .Values.jupyterhub.ingress.hosts }}
-  JupyterHub -> http{{ if $.Values.jupyterhub.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.jupyterhub.hub.baseUrl }}
-  {{- end }}
-{{- end }}

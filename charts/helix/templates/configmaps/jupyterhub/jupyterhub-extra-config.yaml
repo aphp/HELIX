@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: jupyterhub-extra-config
-data: 
-{{ tpl (.Files.Glob "configuration/jupyterhub/*").AsConfig . | nindent 2 }}
