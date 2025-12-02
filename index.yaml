@@ -41,4 +41,24 @@ entries:
     urls:
     - https://github.com/aphp/HELIX/releases/download/helix-1.2.9-dev.442dcd5/helix-1.2.9-dev.442dcd5.tgz
     version: 1.2.9-dev.442dcd5
-generated: "2025-12-01T16:27:22.791929786Z"
+  - apiVersion: v2
+    appVersion: 1.0.0.beta1
+    created: "2025-12-02T16:17:36.991421478Z"
+    dependencies:
+    - condition: jupyterhub.enabled
+      name: jupyterhub
+      repository: https://hub.jupyter.org/helm-chart/
+      version: 4.2.0
+    description: A Helm chart deploying the helix, a collection of research-oriented
+      applications, organized in a cohesive way.
+    digest: eb35d4c653b8135926bd9236e6ae4f335b29c14e1a5a5f5eaed6cf497c1e7dd9
+    home: https://gitlab.data.aphp.fr/ID/pfm/infrastructure/metier/datalab
+    kubeVersion: '>=v1.24.0-0'
+    name: helix
+    sources:
+    - https://gitlab.data.aphp.fr/ID/infrastructure/metier/produits/datalab/charts/helix
+    type: application
+    urls:
+    - https://github.com/aphp/HELIX/releases/download/helix-1.2.9-dev.29e480f/helix-1.2.9-dev.29e480f.tgz
+    version: 1.2.9-dev.29e480f
+generated: "2025-12-02T16:17:36.991440403Z"
