@@ -75,19 +75,19 @@ configuration:
       collaboration:
         # configuration.jupyterhub.profiles.collaboration[0].displayName -- Image name to be displayed in the profile list.
         # @section -- HELIX settings
-        - displayName: "Jupyter EDS Base Notebook - DEV"
+        - displayName: "Jupyter EDS Base Notebook"
           # configuration.jupyterhub.profiles.collaboration[0].slug -- Profile's slug.
           # @section -- HELIX settings
-          slug: "eds-base-dev"
+          slug: "eds-base-notebook"
           # configuration.jupyterhub.profiles.collaboration[0].image -- Image to be used with that profile.
           # @section -- HELIX settings
-          image: "aphp/jupyterlab:eds-base-notebook_ubuntu-22.04-dev"
+          image: "ghcr.io/aphp/base-eds-notebook:x86_64-ubuntu-24.04"
           # configuration.jupyterhub.profiles.collaboration[0].imagePullPolicy -- Image's Pull Policy.
           # @section -- HELIX settings
           imagePullPolicy: "Always"
-        - displayName: "Jupyter EDS OCAML Notebook - DEV"
-          slug: "eds-ocaml-dev"
-          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04-dev"
+        - displayName: "Jupyter EDS OCAML Notebook"
+          slug: "eds-ocaml-notebook-dev"
+          image: "ghcr.io/aphp/ocaml-eds-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
 
 # Settings related to persistence management across the HELIX's applications.
