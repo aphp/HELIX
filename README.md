@@ -1,8 +1,8 @@
 # HELIX
 
-TODO
+TODO 
 
-How to install : 
+How to install :  
 
 ```sh
 helm repo add aphp-helix https://aphp.github.io/HELIX
