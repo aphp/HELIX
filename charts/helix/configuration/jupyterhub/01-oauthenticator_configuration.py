@@ -49,7 +49,7 @@ c.GenericOAuthenticator.allowed_groups = os.environ.get(
     "OIDC_ALLOWED_GROUPS", "NOT_DEFINED"
 ).split(", ")
 c.GenericOAuthenticator.admin_groups = os.environ.get(
-    "OIDC_ADMIN_GROUPS", "/BBS_DA-N-EDS_DATALAB_ADMIN"
+    "OIDC_ADMIN_GROUPS", "NOT_DEFINED"
 ).split(", ")
 
 # Security
