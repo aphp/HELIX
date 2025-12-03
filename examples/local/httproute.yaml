@@ -1,0 +1,135 @@
+persistence:
+  createPVC:
+  - name: data-pvc 
+    storageClassName: "standard"
+    accessMode: "ReadWriteOnce"
+    size: "5Gi"
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+jupyterhub:
+  enabled: true
+  debug:
+    enabled: false
+
+  httpRoute:
+    enabled: true
+    gateway:
+      name: "k8s-lab"
+      namespace: "envoy-gateway-system"
+    hostnames: 
+      - "helix.lab.k8s.local"
+
+  hub:
+    image:
+      pullPolicy: "Always"
+    baseUrl: "/jupyter"
+    db:
+      type: "sqlite-pvc"
+      upgrade:
+      pvc:
+        annotations: {}
+        selector: {}
+        accessModes:
+          - "ReadWriteOnce"
+        storage: "2Gi"
+        storageClassName: "standard"
+
+    config:
+      Authenticator:
+        admin_users:
+          - "admin1" 
+          - "admin2"
+        allowed_users:
+          - "helix-local"
+          - "user1"
+          - "user2"
+
+      DummyAuthenticator:
+        password: "supersecretpassword"
+      JupyterHub:
+        authenticator_class: "dummy"
+
+    extraEnv:
+      PROJECT: "helix-local"
+      JHUB_DEFAULT_URL: "/jupyter/hub/spawn/helix-local"
+
+    redirectToServer: false
+
+    networkPolicy:
+      enabled: false
+
+    extraVolumeMounts:
+      - name: "extra-config"
+        mountPath: "/usr/local/etc/jupyterhub/jupyterhub_config.d"
+
+    extraVolumes:
+      - name: "extra-config"
+        configMap:
+          name: "jupyterhub-extra-config"
+
+  scheduling:
+    userScheduler:
+      enabled: false
+    podPriority:
+      enabled: false
+    userPlaceholder:
+      enabled: false
+
+  proxy:
+    service:
+      type: "ClusterIP"
+
+  prePuller:
+    continuous:
+      enabled: false
+    hook:
+      enabled: false
+
+  cull:
+    enabled: true
+    timeout: 3600
+    every: 300
+
+  singleuser:
+    podNameTemplate: "jupyter-{unescaped_username}"
+
+    extraEnv:
+      PYDEVD_DISABLE_FILE_VALIDATION: "1"
+
+    storage:
+      dynamic:
+        storageClass: "standard"
+        storageAccessModes:
+        - "ReadWriteOnce"
+      capacity: "5Gi"
+
+      extraVolumeMounts:
+        helix-data:
+          name: "helix-data"
+          mountPath: "/data"
+
+      extraVolumes:
+        helix-data:
+          name: "helix-data"
+          persistentVolumeClaim:
+            claimName: "data-pvc"
+
+    lifecycleHooks:
+      postStart:
+        exec:
+          command:
+          - "sh"
+          - "-c"
+          - "if [ -d /tmp/home ]; then cp -rf /tmp/home/.[^.]* /home/jovyan/; fi"
+
+    cpu:
+      limit: 2
+      guarantee: 1
+    memory:
+      limit: "4G"
+      guarantee: "2G"

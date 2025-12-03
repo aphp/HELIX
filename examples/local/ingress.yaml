@@ -1,44 +1,6 @@
-
-configuration:
-  jupyterhub:
-
-    profiles:
-      user: 
-        - displayName: "Jupyter EDS Base Notebook - DEV"
-          slug: "eds-base-dev"
-          image: "aphp/jupyterlab:eds-base-notebook_ubuntu-22.04-dev"
-          imagePullPolicy: "Always"
-        - displayName: "Jupyter EDS OCAML Notebook - DEV"
-          slug: "eds-ocaml-dev"
-          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04-dev"
-          imagePullPolicy: "Always"
-        - displayName: "Jupyter Minimal Notebook"
-          slug: "minimal"
-          image: "quay.io/jupyter/minimal-notebook:latest"
-          imagePullPolicy: "Always"
-        - displayName: "Jupyter Datascience Notebook"
-          slug: "datascience"
-          image: "quay.io/jupyter/datascience-notebook:latest"
-          imagePullPolicy: "Always"
-
-      collaboration:
-
-        - displayName: "Jupyter EDS Base Notebook - DEV"
-          slug: "eds-base-dev"
-          image: "aphp/jupyterlab:eds-base-notebook_ubuntu-22.04-dev"
-          imagePullPolicy: "Always"
-        - displayName: "Jupyter EDS OCAML Notebook - DEV"
-          slug: "eds-ocaml-dev"
-          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04-dev"
-          imagePullPolicy: "Always"
-
 persistence:
   createPVC:
-  - name: data-hdd-pvc
-    storageClassName: "standard"
-    accessMode: "ReadWriteOnce"
-    size: "5Gi"
-  - name: data-ssd-pvc 
+  - name: data-pvc 
     storageClassName: "standard"
     accessMode: "ReadWriteOnce"
     size: "5Gi"
@@ -99,6 +61,9 @@ jupyterhub:
 
     redirectToServer: false
 
+    networkPolicy:
+      enabled: false
+
     extraVolumeMounts:
       - name: "extra-config"
         mountPath: "/usr/local/etc/jupyterhub/jupyterhub_config.d"
@@ -108,7 +73,6 @@ jupyterhub:
         configMap:
           name: "jupyterhub-extra-config"
 
-      
   scheduling:
     userScheduler:
       enabled: false
@@ -146,19 +110,15 @@ jupyterhub:
       capacity: "5Gi"
 
       extraVolumeMounts:
-      - name: "helix-data-hdd"
-        mountPath: "/data/hdd"
-      - name: "helix-data-ssd"
-        mountPath: "/data/ssd"
+        helix-data:
+          name: "helix-data"
+          mountPath: "/data"
 
       extraVolumes:
-      - name: "helix-data-hdd"
-        persistentVolumeClaim:
-          claimName: "data-hdd-pvc"
-      - name: "helix-data-ssd"
-        persistentVolumeClaim:
-          claimName: "data-ssd-pvc"
-        
+        helix-data:
+          name: "helix-data"
+          persistentVolumeClaim:
+            claimName: "data-pvc"
 
     lifecycleHooks:
       postStart:
@@ -170,7 +130,7 @@ jupyterhub:
 
     cpu:
       limit: 2
-      guarantee: 0.5
+      guarantee: 1
     memory:
-      limit: "8G"
-      guarantee: "4G"
+      limit: "4G"
+      guarantee: "2G"

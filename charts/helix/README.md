@@ -16,7 +16,7 @@ Kubernetes: `>=v1.24.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://hub.jupyter.org/helm-chart/ | jupyterhub | 4.2.0 |
+| https://hub.jupyter.org/helm-chart/ | jupyterhub | 4.3.1 |
 
 ## Deployment Architecture
 
