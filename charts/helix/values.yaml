@@ -58,7 +58,7 @@ configuration:
           imagePullPolicy: "Always"
         - displayName: "Jupyter EDS OCAML Notebook"
           slug: "eds-ocaml-notebook"
-          image: "ghcr.io/aphp/ocaml-eds-notebook:x86_64-ubuntu-24.04"
+          image: "ghcr.io/aphp/base-ocaml-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
         - displayName: "Jupyter Minimal Notebook"
           slug: "minimal"
@@ -87,7 +87,7 @@ configuration:
           imagePullPolicy: "Always"
         - displayName: "Jupyter EDS OCAML Notebook"
           slug: "eds-ocaml-notebook"
-          image: "ghcr.io/aphp/ocaml-eds-notebook:x86_64-ubuntu-24.04"
+          image: "ghcr.io/aphp/base-ocaml-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
 
 # Settings related to persistence management across the HELIX's applications.
