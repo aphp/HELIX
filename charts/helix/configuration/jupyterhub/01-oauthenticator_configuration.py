@@ -20,6 +20,8 @@ c.GenericOAuthenticator.authorize_url = os.environ.get(
     "OIDC_AUTHORIZE_URL", "NOT_DEFINED"
 )
 c.GenericOAuthenticator.token_url = os.environ.get("OIDC_TOKEN_URL", "NOT_DEFINED")
+c.GenericOAuthenticator.oauth_callback_url = os.environ.get("OIDC_CALLBACK_URL", "NOT_DEFINED")
+
 
 # What we request about the user
 # ------------------------------

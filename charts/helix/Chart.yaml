@@ -1,9 +1,9 @@
 apiVersion: v2
 name: helix
 description: A Helm chart deploying the helix, a collection of research-oriented applications, organized in a cohesive way.
-home: https://gitlab.data.aphp.fr/ID/pfm/infrastructure/metier/datalab
+home: https://github.com/aphp/HELIX
 sources: 
-  - https://gitlab.data.aphp.fr/ID/infrastructure/metier/produits/datalab/charts/helix
+  - https://github.com/aphp/HELIX
 
 kubeVersion: ">=v1.24.0-0"
 

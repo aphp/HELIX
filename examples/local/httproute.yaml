@@ -1,14 +1,6 @@
-
-configuration:
-  jupyterhub:
-
 persistence:
   createPVC:
-  - name: data-hdd-pvc
-    storageClassName: "standard"
-    accessMode: "ReadWriteOnce"
-    size: "5Gi"
-  - name: data-ssd-pvc 
+  - name: data-pvc 
     storageClassName: "standard"
     accessMode: "ReadWriteOnce"
     size: "5Gi"
@@ -24,13 +16,13 @@ jupyterhub:
   debug:
     enabled: false
 
-  httproute:
+  httpRoute:
     enabled: true
     gateway:
       name: "k8s-lab"
       namespace: "envoy-gateway-system"
     hostnames: 
-      - "lab.k8s.local"
+      - "helix.lab.k8s.local"
 
   hub:
     image:
@@ -68,6 +60,9 @@ jupyterhub:
 
     redirectToServer: false
 
+    networkPolicy:
+      enabled: false
+
     extraVolumeMounts:
       - name: "extra-config"
         mountPath: "/usr/local/etc/jupyterhub/jupyterhub_config.d"
@@ -77,7 +72,6 @@ jupyterhub:
         configMap:
           name: "jupyterhub-extra-config"
 
-      
   scheduling:
     userScheduler:
       enabled: false
@@ -115,19 +109,15 @@ jupyterhub:
       capacity: "5Gi"
 
       extraVolumeMounts:
-      - name: "helix-data-hdd"
-        mountPath: "/data/hdd"
-      - name: "helix-data-ssd"
-        mountPath: "/data/ssd"
+        helix-data:
+          name: "helix-data"
+          mountPath: "/data"
 
       extraVolumes:
-      - name: "helix-data-hdd"
-        persistentVolumeClaim:
-          claimName: "data-hdd-pvc"
-      - name: "helix-data-ssd"
-        persistentVolumeClaim:
-          claimName: "data-ssd-pvc"
-        
+        helix-data:
+          name: "helix-data"
+          persistentVolumeClaim:
+            claimName: "data-pvc"
 
     lifecycleHooks:
       postStart:
