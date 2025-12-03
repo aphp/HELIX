@@ -4,11 +4,11 @@
 
 A Helm chart deploying the helix, a collection of research-oriented applications, organized in a cohesive way.
 
-**Homepage:** <https://gitlab.data.aphp.fr/ID/pfm/infrastructure/metier/datalab>
+**Homepage:** <https://github.com/aphp/HELIX>
 
 ## Source Code
 
-* <https://gitlab.data.aphp.fr/ID/infrastructure/metier/produits/datalab/charts/helix>
+* <https://github.com/aphp/HELIX>
 
 ## Requirements
 
