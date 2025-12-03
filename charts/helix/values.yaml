@@ -12,11 +12,11 @@ fullnameOverride: ""
 
 # -- HELIX settings.
 # @section -- HELIX settings
-# @default -- Configuration fitting an APHP-EDS context
+# @default -- Configuration fitting a standard context
 configuration:
   # -- HELIX settings regarding JupyterHub.
   # @section -- HELIX settings
-  # @default -- JupyterHub configuration override fitting an APHP-EDS context
+  # @default -- JupyterHub configuration override fitting a standard context
   jupyterhub:
     # -- HELIX settings regarding Jupyter Notebbok Singleuser (jovyan user inside pods).
     # @section -- HELIX settings
@@ -37,7 +37,7 @@ configuration:
 
     # -- Specifies JupyterHub's available profile, containing the notebook's docker images.
     # @section -- HELIX settings
-    # @default -- Single-ser and collaborative profiles fitting an APHP-EDS context.
+    # @default -- Single-ser and collaborative profiles fitting an standard context.
     profiles:
       # -- Single-user profiles, used when a user spawns his own JLab environment.
       # @section -- HELIX settings
@@ -46,19 +46,19 @@ configuration:
       user: 
         # configuration.jupyterhub.profiles.user[0].displayName -- Profile's name to be display to the user.
         # @section -- HELIX settings
-        - displayName: "Jupyter EDS Base Notebook - DEV"
+        - displayName: "Jupyter EDS Base Notebook"
           # configuration.jupyterhub.profiles.user[0].slug -- Profile's slug.
           # @section -- HELIX settings
-          slug: "eds-base-dev"
+          slug: "eds-base-notebook"
           # configuration.jupyterhub.profiles.user[0].image -- Image to be used with that profile.
           # @section -- HELIX settings
-          image: "aphp/jupyterlab:eds-base-notebook_ubuntu-22.04-dev"
+          image: "ghcr.io/aphp/base-eds-notebook:x86_64-ubuntu-24.04"
           # configuration.jupyterhub.profiles.user[0].imagePullPolicy -- Image's Pull Policy.
           # @section -- HELIX settings
           imagePullPolicy: "Always"
-        - displayName: "Jupyter EDS OCAML Notebook - DEV"
-          slug: "eds-ocaml-dev"
-          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04-dev"
+        - displayName: "Jupyter EDS OCAML Notebook"
+          slug: "eds-ocaml-notebook"
+          image: "ghcr.io/aphp/ocaml-eds-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
         - displayName: "Jupyter Minimal Notebook"
           slug: "minimal"
@@ -86,7 +86,7 @@ configuration:
           # @section -- HELIX settings
           imagePullPolicy: "Always"
         - displayName: "Jupyter EDS OCAML Notebook"
-          slug: "eds-ocaml-notebook-dev"
+          slug: "eds-ocaml-notebook"
           image: "ghcr.io/aphp/ocaml-eds-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
 

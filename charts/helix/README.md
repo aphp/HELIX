@@ -1,6 +1,6 @@
 # helix
 
-![Version: 1.2.6](https://img.shields.io/badge/Version-1.2.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0.beta1](https://img.shields.io/badge/AppVersion-1.0.0.beta1-informational?style=flat-square)
+![Version: 1.2.9](https://img.shields.io/badge/Version-1.2.9-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0.beta1](https://img.shields.io/badge/AppVersion-1.0.0.beta1-informational?style=flat-square)
 
 A Helm chart deploying the helix, a collection of research-oriented applications, organized in a cohesive way.
 
@@ -28,7 +28,7 @@ TODO
 
 The default Chart values allows the deployment of a working (although unsecure) version of the HELIX out-of-the-box.
 
-To install the chart, just type :
+To install the chart, just type  the following command:
 
 ```sh
 helm upgrade --install helix ./helix
@@ -47,22 +47,22 @@ helm upgrade --install helix ./helix
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| configuration | object | Configuration fitting an APHP-EDS context | HELIX settings. |
-| configuration.jupyterhub | object | JupyterHub configuration override fitting an APHP-EDS context | HELIX settings regarding JupyterHub. |
+| configuration | object | Configuration fitting a standard context | HELIX settings. |
+| configuration.jupyterhub | object | JupyterHub configuration override fitting a standard context | HELIX settings regarding JupyterHub. |
 | configuration.jupyterhub.singleuser | object | No override of existing Z2JHK8S Chart Configuration. | HELIX settings regarding Jupyter Notebbok Singleuser (jovyan user inside pods). |
 | configuration.jupyterhub.singleuser.ownership | object | No override of existing Z2JHK8S Chart Configuration. | Supports UID/GID manipulation to match custom volume persmisisons |
 | configuration.jupyterhub.singleuser.ownership.uidOverride | int | `1000` | Overrides the default "jovyan" user UID |
 | configuration.jupyterhub.singleuser.ownership.addToGroups | list | `[]` | Extra group binding for the default user (jovyan). Must be an array of GIDs of form [123,456] |
-| configuration.jupyterhub.profiles | object | Single-ser and collaborative profiles fitting an APHP-EDS context. | Specifies JupyterHub's available profile, containing the notebook's docker images. |
+| configuration.jupyterhub.profiles | object | Single-ser and collaborative profiles fitting an standard context. | Specifies JupyterHub's available profile, containing the notebook's docker images. |
 | configuration.jupyterhub.profiles.user | list | APHP EDS Base and OCAML notebook profiles, alongside Jupyter Project official  | Single-user profiles, used when a user spawns his own JLab environment.             minimal and datascience notebooks |
-| configuration.jupyterhub.profiles.user[0].displayName | string | `"Jupyter EDS Base Notebook - DEV"` | Profile's name to be display to the user. |
-| configuration.jupyterhub.profiles.user[0].slug | string | `"eds-base-dev"` | Profile's slug. |
-| configuration.jupyterhub.profiles.user[0].image | string | `"aphp/jupyterlab:eds-base-notebook_ubuntu-22.04-dev"` | Image to be used with that profile. |
+| configuration.jupyterhub.profiles.user[0].displayName | string | `"Jupyter EDS Base Notebook"` | Profile's name to be display to the user. |
+| configuration.jupyterhub.profiles.user[0].slug | string | `"eds-base-notebook"` | Profile's slug. |
+| configuration.jupyterhub.profiles.user[0].image | string | `"ghcr.io/aphp/base-eds-notebook:x86_64-ubuntu-24.04"` | Image to be used with that profile. |
 | configuration.jupyterhub.profiles.user[0].imagePullPolicy | string | `"Always"` | Image's Pull Policy. |
 | configuration.jupyterhub.profiles.collaboration | list | APHP EDS Base and OCAML notebook profiles. | Collaboration profiles, used when a user spawns a collaborative JLab. |
-| configuration.jupyterhub.profiles.collaboration[0].displayName | string | `"Jupyter EDS Base Notebook - DEV"` | Image name to be displayed in the profile list. |
-| configuration.jupyterhub.profiles.collaboration[0].slug | string | `"eds-base-dev"` | Profile's slug. |
-| configuration.jupyterhub.profiles.collaboration[0].image | string | `"aphp/jupyterlab:eds-base-notebook_ubuntu-22.04-dev"` | Image to be used with that profile. |
+| configuration.jupyterhub.profiles.collaboration[0].displayName | string | `"Jupyter EDS Base Notebook"` | Image name to be displayed in the profile list. |
+| configuration.jupyterhub.profiles.collaboration[0].slug | string | `"eds-base-notebook"` | Profile's slug. |
+| configuration.jupyterhub.profiles.collaboration[0].image | string | `"ghcr.io/aphp/base-eds-notebook:x86_64-ubuntu-24.04"` | Image to be used with that profile. |
 | configuration.jupyterhub.profiles.collaboration[0].imagePullPolicy | string | `"Always"` | Image's Pull Policy. |
 
 ### HELIX persistence settings
@@ -107,7 +107,7 @@ helm upgrade --install helix ./helix
 | jupyterhub.proxy.service.type | string | "ClusterIP" | Default ClusterIP. See the Kubernetes docs to learn more about service types. |
 | jupyterhub.prePuller.continuous.enabled | bool | Disabled | See the optimization section for more details. |
 | jupyterhub.prePuller.hook.enabled | bool | Disabled --  | See the optimization section for more details |
-| jupyterhub.cull.enabled | bool | true | Enable/disable use of jupyter-idle-culler. |
+| jupyterhub.cull.enabled | bool | false | Enable/disable use of jupyter-idle-culler. |
 | jupyterhub.cull.maxAge | int | 93600s (26 hours) | Maximum lifespan (in seconds) of a singleuser pod. |
 | jupyterhub.singleuser.podNameTemplate | string | "jupyter-{unescaped_username}" | Passthrough configuration for KubeSpawner.pod_name_template. |
 | jupyterhub.singleuser.storage.dynamic | object | Dynamic 5Gi PVC for the home volume. | Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically    provision storage for the PVC that KubeSpawner will create. |
@@ -139,3 +139,5 @@ helm upgrade --install helix ./helix
 | jupyterhub.singleuser.memory.limit | string | `"16G"` |  |
 | jupyterhub.singleuser.memory.guarantee | string | `"8G"` |  |
 
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.14.2](https://github.com/norwoodj/helm-docs/releases/v1.14.2)
