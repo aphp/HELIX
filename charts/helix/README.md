@@ -18,12 +18,6 @@ Kubernetes: `>=v1.24.0-0`
 |------------|------|---------|
 | https://hub.jupyter.org/helm-chart/ | jupyterhub | 4.3.1 |
 
-## Deployment Architecture
-
-This Chart allows the HELIX to be deployed as follows :
-
-TODO
-
 ## Installing the Chart
 
 The default Chart values allows the deployment of a working (although unsecure) version of the HELIX out-of-the-box.
