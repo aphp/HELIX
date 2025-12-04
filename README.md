@@ -1,5 +1,5 @@
 [![helix-helmchart-ci](https://github.com/aphp/HELIX/actions/workflows/chart-ci.yaml/badge.svg)](https://github.com/aphp/HELIX/actions/workflows/chart-ci.yaml)
-
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/helix)](https://artifacthub.io/packages/search?repo=helix)
 # HELIX
 
 Official Helm chart for deploying **HELIX** (Health and Exploration Lab for Innovative eXperiments) on Kubernetes.
