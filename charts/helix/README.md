@@ -1,6 +1,6 @@
 # helix
 
-![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0.beta1](https://img.shields.io/badge/AppVersion-1.0.0.beta1-informational?style=flat-square)
+![Version: 1.3.1](https://img.shields.io/badge/Version-1.3.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0.beta1](https://img.shields.io/badge/AppVersion-1.0.0.beta1-informational?style=flat-square)
 
 A Helm chart deploying the helix, a collection of research-oriented applications, organized in a cohesive way.
 
@@ -17,12 +17,6 @@ Kubernetes: `>=v1.24.0-0`
 | Repository | Name | Version |
 |------------|------|---------|
 | https://hub.jupyter.org/helm-chart/ | jupyterhub | 4.3.1 |
-
-## Deployment Architecture
-
-This Chart allows the HELIX to be deployed as follows :
-
-TODO
 
 ## Installing the Chart
 
