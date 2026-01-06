@@ -25,10 +25,16 @@ configuration:
       # -- Supports UID/GID manipulation to match custom volume persmisisons
       # @section -- HELIX settings
       # @default -- No override of existing Z2JHK8S Chart Configuration.
+      oauth_no_confirm: True
+
       ownership:
         # -- Overrides the default "jovyan" user UID
         # @section -- HELIX settings
         uidOverride: 1000
+        # -- Overrides the default "jovyan" group UID
+        # @section -- HELIX settings
+        gidOverride: 100
+        
         # -- Extra group binding for the default user (jovyan). Must be an array of GIDs of form [123,456]
         # @section -- HELIX settings
         addToGroups: []
