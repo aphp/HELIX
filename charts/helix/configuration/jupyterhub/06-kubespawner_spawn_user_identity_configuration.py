@@ -3,7 +3,7 @@
 # Defining custom UID for singleserver user
 user_id = {{ .Values.configuration.jupyterhub.singleuser.ownership.uidOverride | default 1000 }}
 
-# Defining custom UID for singleserver user
+# Defining custom GID for singleserver user
 user_group_id = {{ .Values.configuration.jupyterhub.singleuser.ownership.gidOverride | default 100 }}
 
 # Defining custom GID for singleserver user 

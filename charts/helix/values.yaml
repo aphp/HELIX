@@ -25,8 +25,6 @@ configuration:
       # -- Supports UID/GID manipulation to match custom volume persmisisons
       # @section -- HELIX settings
       # @default -- No override of existing Z2JHK8S Chart Configuration.
-      oauth_no_confirm: True
-
       ownership:
         # -- Overrides the default "jovyan" user UID
         # @section -- HELIX settings
