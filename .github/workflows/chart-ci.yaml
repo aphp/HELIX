@@ -4,6 +4,7 @@ run-name: HELIX Helm Chart CI triggered by @${{ github.actor }}
 on:
   push:
     branches:
+      - "*-dev"
       - "dev"
       - "main"
 
