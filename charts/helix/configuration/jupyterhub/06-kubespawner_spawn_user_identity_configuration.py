@@ -3,6 +3,9 @@
 # Defining custom UID for singleserver user
 user_id = {{ .Values.configuration.jupyterhub.singleuser.ownership.uidOverride | default 1000 }}
 
+# Defining custom GID for singleserver user
+user_group_id = {{ .Values.configuration.jupyterhub.singleuser.ownership.gidOverride | default 100 }}
+
 # Defining custom GID for singleserver user 
 extra_gids = []
 
@@ -11,4 +14,7 @@ extra_gids.append({{ $groups.gid }})
 {{- end }}
 
 c.KubeSpawner.uid = user_id
+c.KubeSpawner.gid = user_group_id
 c.KubeSpawner.supplemental_gids = extra_gids
+
+

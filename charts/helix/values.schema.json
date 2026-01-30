@@ -59,6 +59,9 @@
                                         },
                                         "uidOverride": {
                                             "type": "integer"
+                                        },
+                                        "gidOverride": {
+                                            "type": "integer"
                                         }
                                     },
                                     "type": "object"
