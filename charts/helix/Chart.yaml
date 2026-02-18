@@ -31,5 +31,5 @@ appVersion: "1.0.0.beta2"
 dependencies:
   - name: jupyterhub
     repository: https://hub.jupyter.org/helm-chart/
-    version: 4.3.1
+    version: 4.3.2
     condition: jupyterhub.enabled
