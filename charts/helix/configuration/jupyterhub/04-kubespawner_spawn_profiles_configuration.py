@@ -37,7 +37,13 @@ async def generate_profile_list(spawner):
 		    'kubespawner_override': {
 		        'image':'{{ $profile.image }}',
 		        'image_pull_policy': '{{ $profile.imagePullPolicy }}',
-		    },
+            if 'cpu' in {{ $profile }}:
+				'cpu_limit': {{ $profile.cpu.limit }},                  # max 1 CPU
+            	'cpu_guarantee': {{ $profile.cpu.guarantee }},            # garantie 0.5 CPU
+            if 'memory' in {{ $profile }}:
+            	'mem_limit': "{{ $profile.memory.limit }}",               # max 2 GiB
+            	'mem_guarantee': "{{ $profile.memory.guarantee }}"           # garantie 1 GiB		    
+            },
 		},
 		{{- end }}
         ])
@@ -52,6 +58,12 @@ async def generate_profile_list(spawner):
 		    'kubespawner_override': {
 		        'image':'{{ $profile.image }}',
 		        'image_pull_policy': '{{ $profile.imagePullPolicy }}',
+            if 'cpu' in {{ $profile }}:
+				'cpu_limit': {{ $profile.cpu.limit }},                  # max 1 CPU
+            	'cpu_guarantee': {{ $profile.cpu.guarantee }},            # garantie 0.5 CPU
+            if 'memory' in {{ $profile }}:
+            	'mem_limit': "{{ $profile.memory.limit }}",               # max 2 GiB
+            	'mem_guarantee': "{{ $profile.memory.guarantee }}"           # garantie 1 GiB		    
 		    },
 		},
 		{{- end }}
