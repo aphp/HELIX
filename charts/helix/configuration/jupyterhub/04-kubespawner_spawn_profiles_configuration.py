@@ -41,8 +41,8 @@ async def generate_profile_list(spawner):
                 'cpu_guarantee': '{{ $profile.cpu_guarantee }}',
                 'memory_limit': '{{ $profile.memory_limit }}',
                 'memory_guarantee': '{{ $profile.memory_guarantee }}', 
-        	},
-		}
+		    },
+		},
 		{{- end }}
         ])
 
@@ -59,11 +59,11 @@ async def generate_profile_list(spawner):
                 'cpu_limit': '{{ $profile.cpu_limit }}',
                 'cpu_guarantee': '{{ $profile.cpu_guarantee }}',
                 'memory_limit': '{{ $profile.memory_limit }}',
-                'memory_guarantee': '{{ $profile.memory_guarantee }}',
+                'memory_guarantee': '{{ $profile.memory_guarantee }}', 
 		    },
 		},
 		{{- end }}
-		])
+	])
 
     return profile_list
 

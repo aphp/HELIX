@@ -17,10 +17,10 @@
                                         "type": "object",
                                         "properties": {
                                             "cpu_guarantee": {
-                                                "type": "integer"
+                                                "type": "string"
                                             },
                                             "cpu_limit": {
-                                                "type": "integer"
+                                                "type": "string"
                                             },
                                             "displayName": {
                                                 "type": "string"
@@ -49,10 +49,10 @@
                                         "type": "object",
                                         "properties": {
                                             "cpu_guarantee": {
-                                                "type": "integer"
+                                                "type": "string"
                                             },
                                             "cpu_limit": {
-                                                "type": "integer"
+                                                "type": "string"
                                             },
                                             "displayName": {
                                                 "type": "string"
