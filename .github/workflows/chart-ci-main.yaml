@@ -1,10 +1,9 @@
-name: helix-helmchart-ci
+name: helix-helmchart-ci-dev
 run-name: HELIX Helm Chart CI triggered by @${{ github.actor }}
 
 on:
   push:
     branches:
-      - "dev"
       - "main"
 
 jobs:
