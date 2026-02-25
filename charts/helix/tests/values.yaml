@@ -56,24 +56,10 @@ configuration:
           # configuration.jupyterhub.profiles.user[0].imagePullPolicy -- Image's Pull Policy.
           # @section -- HELIX settings
           imagePullPolicy: "Always"
-          cpu:
-            limit: 5
-            guarantee: 2
-          memory:
-            limit: "16G"
-            guarantee: "8G"
-        - displayName: "Jupyter EDS OCAML Notebook - DEV"
-          slug: "eds-ocaml-dev"
-          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04-dev"
-          imagePullPolicy: "Always"
-        - displayName: "Jupyter Minimal Notebook"
-          slug: "minimal"
-          image: "quay.io/jupyter/minimal-notebook:latest"
-          imagePullPolicy: "Always"
-        - displayName: "Jupyter Datascience Notebook"
-          slug: "datascience"
-          image: "quay.io/jupyter/datascience-notebook:latest"
-          imagePullPolicy: "Always"
+          cpu_limit: 5.1
+          cpu_guarantee: 2.1
+          memory_limit: "8G"
+          memory_guarantee: "4G"
 
       # -- Collaboration profiles, used when a user spawns a collaborative JLab.
       # @section -- HELIX settings
@@ -91,16 +77,10 @@ configuration:
           # configuration.jupyterhub.profiles.collaboration[0].imagePullPolicy -- Image's Pull Policy.
           # @section -- HELIX settings
           imagePullPolicy: "Always"
-          cpu:
-            limit: 2
-            guarantee: 1
-          memory:
-            limit: "8G"
-            guarantee: "4G"
-        - displayName: "Jupyter EDS OCAML Notebook - DEV"
-          slug: "eds-ocaml-dev"
-          image: "aphp/jupyterlab:eds-ocaml-notebook_ubuntu-22.04-dev"
-          imagePullPolicy: "Always"
+          cpu_limit: 5.1
+          cpu_guarantee: 2.1
+          memory_limit: "8G"
+          memory_guarantee: "4G"
 
 # Settings related to persistence management across the HELIX's applications.
 persistence:
