@@ -17,10 +17,10 @@
                                         "type": "object",
                                         "properties": {
                                             "cpu_guarantee": {
-                                                "type": "string"
+                                                "type": "number"
                                             },
                                             "cpu_limit": {
-                                                "type": "string"
+                                                "type": "number"
                                             },
                                             "displayName": {
                                                 "type": "string"
@@ -49,10 +49,10 @@
                                         "type": "object",
                                         "properties": {
                                             "cpu_guarantee": {
-                                                "type": "string"
+                                                "type": "number"
                                             },
                                             "cpu_limit": {
-                                                "type": "string"
+                                                "type": "number"
                                             },
                                             "displayName": {
                                                 "type": "string"
@@ -398,10 +398,10 @@
                             "type": "object",
                             "properties": {
                                 "guarantee": {
-                                    "type": "integer"
+                                    "type": "number"
                                 },
                                 "limit": {
-                                    "type": "integer"
+                                    "type": "number"
                                 }
                             }
                         },

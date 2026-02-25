@@ -29,41 +29,41 @@ async def generate_profile_list(spawner):
     if user_name == collab_user:
 
         spawner.log.info(f'Setting custom profile for collaboration user {user_name}.')
-        profile_list.extend([
-		{{- range $profile := .Values.configuration.jupyterhub.profiles.collaboration }}
+
+        profile_list.extend([{{- range $profile := .Values.configuration.jupyterhub.profiles.collaboration }}
 		{
-		    'display_name': '{{ $profile.displayName }}',
-		    'slug': '{{ $profile.slug }}',
-		    'kubespawner_override': {
-		        'image':'{{ $profile.image }}',
-		        'image_pull_policy': '{{ $profile.imagePullPolicy }}',
-                'cpu_limit': '{{ $profile.cpu_limit }}',
-                'cpu_guarantee': '{{ $profile.cpu_guarantee }}',
-                'memory_limit': '{{ $profile.memory_limit }}',
-                'memory_guarantee': '{{ $profile.memory_guarantee }}', 
-		    },
+			'display_name': '{{ $profile.displayName }}',
+			'slug': '{{ $profile.slug }}',
+			'kubespawner_override': {
+				'image': '{{ $profile.image }}',
+				'image_pull_policy': '{{- $profile.imagePullPolicy }}',
+				'cpu_limit': {{ $profile.cpu_limit }},
+				'cpu_guarantee': {{ $profile.cpu_guarantee }},
+				'memory_limit': '{{ $profile.memory_limit }}',
+				'memory_guarantee': '{{ $profile.memory_guarantee }}', 
+			},
 		},
 		{{- end }}
-        ])
-
+		])
     else:
         spawner.log.info(f'No custom profiles found, setting default profile for user {user_name}.')
-        profile_list.extend([
-		{{- range $profile := .Values.configuration.jupyterhub.profiles.user }}
+
+        profile_list.extend([{{- range $profile := .Values.configuration.jupyterhub.profiles.user }}
 		{
-		    'display_name': '{{ $profile.displayName }}',
-		    'slug': '{{ $profile.slug }}',
-		    'kubespawner_override': {
-		        'image':'{{ $profile.image }}',
-		        'image_pull_policy': '{{ $profile.imagePullPolicy }}',
-                'cpu_limit': '{{ $profile.cpu_limit }}',
-                'cpu_guarantee': '{{ $profile.cpu_guarantee }}',
-                'memory_limit': '{{ $profile.memory_limit }}',
-                'memory_guarantee': '{{ $profile.memory_guarantee }}', 
-		    },
+			'display_name': '{{ $profile.displayName }}',
+			'slug': '{{ $profile.slug }}',
+			'kubespawner_override': {
+				'image': '{{ $profile.image }}',
+				'image_pull_policy': '{{- $profile.imagePullPolicy }}',
+				'cpu_limit': {{ $profile.cpu_limit }},
+				'cpu_guarantee': {{ $profile.cpu_guarantee }},
+				'memory_limit': '{{ $profile.memory_limit }}',
+				'memory_guarantee': '{{ $profile.memory_guarantee }}', 
+			},
 		},
 		{{- end }}
-	])
+		])
+
 
     return profile_list
 

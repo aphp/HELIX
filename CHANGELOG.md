@@ -3,6 +3,7 @@
 ## [1.3.3] - In progress
 ### Added
 - CHANGELOG.md
+- Define cpu limit, cpu guarantee, memory limit and memory guarantee per profile.
 
 ### Changed
 - Update version of Jupyter Hub dependency to 4.3.2
