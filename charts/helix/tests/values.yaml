@@ -46,7 +46,7 @@ configuration:
       user: 
         # configuration.jupyterhub.profiles.user[0].displayName -- Profile's name to be display to the user.
         # @section -- HELIX settings
-        - displayName: "Jupyter EDS Base Notebook - DEV"
+        - displayName: "Jupyter EDS Base Notebook - Personnal - DEV"
           # configuration.jupyterhub.profiles.user[0].slug -- Profile's slug.
           # @section -- HELIX settings
           slug: "eds-base-dev"
@@ -67,7 +67,7 @@ configuration:
       collaboration:
         # configuration.jupyterhub.profiles.collaboration[0].displayName -- Image name to be displayed in the profile list.
         # @section -- HELIX settings
-        - displayName: "Jupyter EDS Base Notebook - DEV"
+        - displayName: "Jupyter EDS Base Notebook - Collaboration - DEV"
           # configuration.jupyterhub.profiles.collaboration[0].slug -- Profile's slug.
           # @section -- HELIX settings
           slug: "eds-base-dev"
