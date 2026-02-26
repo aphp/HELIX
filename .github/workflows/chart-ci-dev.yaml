@@ -8,7 +8,7 @@ on:
 
 jobs:
   aphp-chart-ci-workflow:
-    uses: "aphp/ci-workflows/.github/workflows/chart-ci.yml@dev"
+    uses: "aphp/ci-workflows/.github/workflows/chart-ci.yml@9-lint-yaml-file-in-ci"
     with:
       kubernetes-version: "1.24.2"
       chart-dir: "charts/helix"
