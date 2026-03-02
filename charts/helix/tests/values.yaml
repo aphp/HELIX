@@ -57,7 +57,7 @@ configuration:
           # @section -- HELIX settings
           imagePullPolicy: "Always"
           cpu_limit: 5.50
-          cpu_guarantee: 2.10
+          cpu_guarantee: 2.15
           memory_limit: "8G"
           memory_guarantee: "4G"
 
