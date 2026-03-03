@@ -325,18 +325,6 @@ jupyterhub:
     # @default -- "helix-{unescaped_username}"
     podNameTemplate: "helix-{unescaped_username}"
 
-    # -- Configures KubeSpawner.cpu
-    # Not Used If Cpu Limit and Garantee are definied in the Profile Of Collaboration ou SingleUser
-    # @section -- JupyterHub Chart settings
-    cpu:
-      limit: 7.2
-      guarantee: 3.1
-    # -- Configures KubeSpawner.memory
-    # @section -- JupyterHub Chart settings
-    memory:
-      limit: "18G"
-      guarantee: "6G"
-
     cloudMetadata:
       blockWithIptables: false
 
