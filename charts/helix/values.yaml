@@ -71,7 +71,7 @@ configuration:
           image: "ghcr.io/aphp/base-ocaml-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
           cpu:
-            limit: 5.1
+            limit: 5.10
             guarantee: 2.1
           memory :
             limit: "8G"
