@@ -2,9 +2,8 @@ name: helix-helmchart-ci
 run-name: HELIX Helm Chart CI triggered by @${{ github.actor }}
 
 on:
-  push:
-    branches:
-      - "*"
+ workflow_dispatch:
+ push:
 
 jobs:
   aphp-chart-ci-workflow:
