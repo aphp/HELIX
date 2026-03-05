@@ -39,8 +39,8 @@ async def generate_profile_list(spawner):
 				'image_pull_policy': '{{- $profile.imagePullPolicy }}',
 				'cpu_limit': {{ $profile.cpu_limit }},
 				'cpu_guarantee': {{ $profile.cpu_guarantee }},
-				'memory_limit': '{{ $profile.memory_limit }}',
-				'memory_guarantee': '{{ $profile.memory_guarantee }}', 
+				'mem_limit': '{{ $profile.memory_limit }}',
+				'mem_guarantee': '{{ $profile.memory_guarantee }}', 
 			},
 		},
 		{{- end }}
@@ -57,8 +57,8 @@ async def generate_profile_list(spawner):
 				'image_pull_policy': '{{- $profile.imagePullPolicy }}',
 				'cpu_limit': {{ $profile.cpu_limit }},
 				'cpu_guarantee': {{ $profile.cpu_guarantee }},
-				'memory_limit': '{{ $profile.memory_limit }}',
-				'memory_guarantee': '{{ $profile.memory_guarantee }}', 
+				'mem_limit': '{{ $profile.memory_limit }}',
+				'mem_guarantee': '{{ $profile.memory_guarantee }}', 
 			},
 		},
 		{{- end }}
