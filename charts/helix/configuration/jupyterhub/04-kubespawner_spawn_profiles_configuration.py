@@ -32,15 +32,15 @@ async def generate_profile_list(spawner):
 
         profile_list.extend([{{- range $profile := .Values.configuration.jupyterhub.profiles.collaboration }}
 		{
-			'display_name': '{{ $profile.displayName }}',
-			'slug': '{{ $profile.slug }}',
+			'display_name': '{{- $profile.displayName }}',
+			'slug': '{{- $profile.slug }}',
 			'kubespawner_override': {
-				'image': '{{ $profile.image }}',
+				'image': '{{- $profile.image }}',
 				'image_pull_policy': '{{- $profile.imagePullPolicy }}',
-				'cpu_limit': {{ $profile.cpu.limit }},
-				'cpu_guarantee': {{ $profile.cpu.guarantee }},
-				'mem_limit': '{{ $profile.memory.limit }}',
-				'mem_guarantee': '{{ $profile.memory.guarantee }}', 
+				'cpu_limit': {{- $profile.cpu.limit }},
+				'cpu_guarantee': {{- $profile.cpu.guarantee }},
+				'mem_limit': '{{- $profile.memory.limit }}',
+				'mem_guarantee': '{{- $profile.memory.guarantee }}', 
 			},
 		},
 		{{- end }}
@@ -50,15 +50,15 @@ async def generate_profile_list(spawner):
 
         profile_list.extend([{{- range $profile := .Values.configuration.jupyterhub.profiles.user }}
 		{
-			'display_name': '{{ $profile.displayName }}',
-			'slug': '{{ $profile.slug }}',
+			'display_name': '{{- $profile.displayName }}',
+			'slug': '{{- $profile.slug }}',
 			'kubespawner_override': {
-				'image': '{{ $profile.image }}',
+				'image': '{{- $profile.image }}',
 				'image_pull_policy': '{{- $profile.imagePullPolicy }}',
-				'cpu_limit': {{ $profile.cpu.limit }},
-				'cpu_guarantee': {{ $profile.cpu.guarantee }},
-				'mem_limit': '{{ $profile.memory.limit }}',
-				'mem_guarantee': '{{ $profile.memory.guarantee }}', 
+				'cpu_limit': {{- $profile.cpu.limit }},
+				'cpu_guarantee': {{- $profile.cpu.guarantee }},
+				'mem_limit': '{{- $profile.memory.limit }}',
+				'mem_guarantee': '{{- $profile.memory.guarantee }}', 
 			},
 		},
 		{{- end }}
