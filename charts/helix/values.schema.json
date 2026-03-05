@@ -16,11 +16,16 @@
                                     "items": {
                                         "type": "object",
                                         "properties": {
-                                            "cpu_guarantee": {
-                                                "type": "number"
-                                            },
-                                            "cpu_limit": {
-                                                "type": "number"
+                                            "cpu": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "guarantee": {
+                                                        "type": "number"
+                                                    },
+                                                    "limit": {
+                                                        "type": "number"
+                                                    }
+                                                }
                                             },
                                             "displayName": {
                                                 "type": "string"
@@ -31,11 +36,16 @@
                                             "imagePullPolicy": {
                                                 "type": "string"
                                             },
-                                            "memory_guarantee": {
-                                                "type": "string"
-                                            },
-                                            "memory_limit": {
-                                                "type": "string"
+                                            "memory": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "guarantee": {
+                                                        "type": "string"
+                                                    },
+                                                    "limit": {
+                                                        "type": "string"
+                                                    }
+                                                }
                                             },
                                             "slug": {
                                                 "type": "string"
@@ -48,11 +58,16 @@
                                     "items": {
                                         "type": "object",
                                         "properties": {
-                                            "cpu_guarantee": {
-                                                "type": "number"
-                                            },
-                                            "cpu_limit": {
-                                                "type": "number"
+                                            "cpu": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "guarantee": {
+                                                        "type": "number"
+                                                    },
+                                                    "limit": {
+                                                        "type": "number"
+                                                    }
+                                                }
                                             },
                                             "displayName": {
                                                 "type": "string"
@@ -63,11 +78,16 @@
                                             "imagePullPolicy": {
                                                 "type": "string"
                                             },
-                                            "memory_guarantee": {
-                                                "type": "string"
-                                            },
-                                            "memory_limit": {
-                                                "type": "string"
+                                            "memory": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "guarantee": {
+                                                        "type": "string"
+                                                    },
+                                                    "limit": {
+                                                        "type": "string"
+                                                    }
+                                                }
                                             },
                                             "slug": {
                                                 "type": "string"
