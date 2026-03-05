@@ -37,10 +37,10 @@ async def generate_profile_list(spawner):
 			'kubespawner_override': {
 				'image': '{{- $profile.image }}',
 				'image_pull_policy': '{{- $profile.imagePullPolicy }}',
-				'cpu_limit': {{- $profile.cpu.limit }},
-				'cpu_guarantee': {{- $profile.cpu.guarantee }},
-				'mem_limit': '{{- $profile.memory.limit }}',
-				'mem_guarantee': '{{- $profile.memory.guarantee }}', 
+				'cpu_limit': {{- $profile.cpu_limit }},
+				'cpu_guarantee': {{- $profile.cpu_guarantee }},
+				'mem_limit': '{{- $profile.memory_limit }}',
+				'mem_guarantee': '{{- $profile.memory_guarantee }}', 
 			},
 		},
 		{{- end }}
@@ -55,10 +55,10 @@ async def generate_profile_list(spawner):
 			'kubespawner_override': {
 				'image': '{{- $profile.image }}',
 				'image_pull_policy': '{{- $profile.imagePullPolicy }}',
-				'cpu_limit': {{- $profile.cpu.limit }},
-				'cpu_guarantee': {{- $profile.cpu.guarantee }},
-				'mem_limit': '{{- $profile.memory.limit }}',
-				'mem_guarantee': '{{- $profile.memory.guarantee }}', 
+				'cpu_limit': {{- $profile.cpu_limit }},
+				'cpu_guarantee': {{- $profile.cpu_guarantee }},
+				'mem_limit': '{{- $profile.memory_limit }}',
+				'mem_guarantee': '{{- $profile.memory_guarantee }}', 
 			},
 		},
 		{{- end }}
