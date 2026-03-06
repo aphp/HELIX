@@ -1,11 +1,9 @@
-name: helix-helmchart-ci
+name: helix-helmchart-ci-dev
 run-name: HELIX Helm Chart CI triggered by @${{ github.actor }}
 
 on:
   push:
-    branches:
-      - "*"
-
+    
 jobs:
   aphp-chart-ci-workflow:
     uses: "aphp/ci-workflows/.github/workflows/chart-ci.yml@main"

@@ -160,6 +160,7 @@ Typical areas you will want to adapt include:
   - Image pull secrets if you use private registries.
 - **Ingress and networking**
   - Ingress enablement,
+  - API Gateway enablement,
   - Public hostnames,
   - TLS configuration.
 - **Persistence and storage**
