@@ -1,15 +1,27 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
     "properties": {
         "configuration": {
+            "type": "object",
             "properties": {
                 "jupyterhub": {
+                    "type": "object",
                     "properties": {
                         "profiles": {
+                            "type": "object",
                             "properties": {
                                 "collaboration": {
+                                    "type": "array",
                                     "items": {
+                                        "type": "object",
                                         "properties": {
+                                            "cpu_guarantee": {
+                                                "type": "number"
+                                            },
+                                            "cpu_limit": {
+                                                "type": "number"
+                                            },
                                             "displayName": {
                                                 "type": "string"
                                             },
@@ -19,17 +31,29 @@
                                             "imagePullPolicy": {
                                                 "type": "string"
                                             },
+                                            "memory_guarantee": {
+                                                "type": "string"
+                                            },
+                                            "memory_limit": {
+                                                "type": "string"
+                                            },
                                             "slug": {
                                                 "type": "string"
                                             }
-                                        },
-                                        "type": "object"
-                                    },
-                                    "type": "array"
+                                        }
+                                    }
                                 },
                                 "user": {
+                                    "type": "array",
                                     "items": {
+                                        "type": "object",
                                         "properties": {
+                                            "cpu_guarantee": {
+                                                "type": "number"
+                                            },
+                                            "cpu_limit": {
+                                                "type": "number"
+                                            },
                                             "displayName": {
                                                 "type": "string"
                                             },
@@ -39,48 +63,51 @@
                                             "imagePullPolicy": {
                                                 "type": "string"
                                             },
+                                            "memory_guarantee": {
+                                                "type": "string"
+                                            },
+                                            "memory_limit": {
+                                                "type": "string"
+                                            },
                                             "slug": {
                                                 "type": "string"
                                             }
-                                        },
-                                        "type": "object"
-                                    },
-                                    "type": "array"
+                                        }
+                                    }
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "singleuser": {
+                            "type": "object",
                             "properties": {
                                 "ownership": {
+                                    "type": "object",
                                     "properties": {
                                         "addToGroups": {
                                             "type": "array"
                                         },
-                                        "uidOverride": {
-                                            "type": "integer"
-                                        },
                                         "gidOverride": {
                                             "type": "integer"
+                                        },
+                                        "uidOverride": {
+                                            "type": "integer"
                                         }
-                                    },
-                                    "type": "object"
+                                    }
                                 }
-                            },
-                            "type": "object"
+                            }
                         }
-                    },
-                    "type": "object"
+                    }
                 }
-            },
-            "type": "object"
+            }
         },
         "fullnameOverride": {
             "type": "string"
         },
         "jupyterhub": {
+            "type": "object",
             "properties": {
                 "cull": {
+                    "type": "object",
                     "properties": {
                         "enabled": {
                             "type": "boolean"
@@ -94,21 +121,21 @@
                         "timeout": {
                             "type": "integer"
                         }
-                    },
-                    "type": "object"
+                    }
                 },
                 "debug": {
+                    "type": "object",
                     "properties": {
                         "enabled": {
                             "type": "boolean"
                         }
-                    },
-                    "type": "object"
+                    }
                 },
                 "enabled": {
                     "type": "boolean"
                 },
                 "hub": {
+                    "type": "object",
                     "properties": {
                         "authenticatePrometheus": {
                             "type": "boolean"
@@ -117,14 +144,16 @@
                             "type": "string"
                         },
                         "db": {
+                            "type": "object",
                             "properties": {
                                 "pvc": {
+                                    "type": "object",
                                     "properties": {
                                         "accessModes": {
+                                            "type": "array",
                                             "items": {
                                                 "type": "string"
-                                            },
-                                            "type": "array"
+                                            }
                                         },
                                         "storage": {
                                             "type": "string"
@@ -132,16 +161,15 @@
                                         "storageClassName": {
                                             "type": "string"
                                         }
-                                    },
-                                    "type": "object"
+                                    }
                                 },
                                 "type": {
                                     "type": "string"
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "extraEnv": {
+                            "type": "object",
                             "properties": {
                                 "JHUB_DEFAULT_URL": {
                                     "type": "string"
@@ -149,11 +177,12 @@
                                 "PROJECT": {
                                     "type": "string"
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "extraVolumeMounts": {
+                            "type": "array",
                             "items": {
+                                "type": "object",
                                 "properties": {
                                     "mountPath": {
                                         "type": "string"
@@ -161,44 +190,44 @@
                                     "name": {
                                         "type": "string"
                                     }
-                                },
-                                "type": "object"
-                            },
-                            "type": "array"
+                                }
+                            }
                         },
                         "extraVolumes": {
+                            "type": "array",
                             "items": {
+                                "type": "object",
                                 "properties": {
                                     "configMap": {
+                                        "type": "object",
                                         "properties": {
                                             "name": {
                                                 "type": "string"
                                             }
-                                        },
-                                        "type": "object"
+                                        }
                                     },
                                     "name": {
                                         "type": "string"
                                     }
-                                },
-                                "type": "object"
-                            },
-                            "type": "array"
+                                }
+                            }
                         },
                         "image": {
+                            "type": "object",
                             "properties": {
                                 "pullPolicy": {
                                     "type": "string"
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "redirectToServer": {
                             "type": "boolean"
                         },
                         "resources": {
+                            "type": "object",
                             "properties": {
                                 "limits": {
+                                    "type": "object",
                                     "properties": {
                                         "cpu": {
                                             "type": "string"
@@ -206,10 +235,10 @@
                                         "memory": {
                                             "type": "string"
                                         }
-                                    },
-                                    "type": "object"
+                                    }
                                 },
                                 "requests": {
+                                    "type": "object",
                                     "properties": {
                                         "cpu": {
                                             "type": "string"
@@ -217,33 +246,31 @@
                                         "memory": {
                                             "type": "string"
                                         }
-                                    },
-                                    "type": "object"
+                                    }
                                 }
-                            },
-                            "type": "object"
+                            }
                         }
-                    },
-                    "type": "object"
+                    }
                 },
                 "ingress": {
+                    "type": "object",
                     "properties": {
                         "annotations": {
+                            "type": "object",
                             "properties": {
                                 "nginx.ingress.kubernetes.io/app-root": {
                                     "type": "string"
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "enabled": {
                             "type": "boolean"
                         },
                         "hosts": {
+                            "type": "array",
                             "items": {
                                 "type": "string"
-                            },
-                            "type": "array"
+                            }
                         },
                         "ingressClassName": {
                             "type": "string"
@@ -251,45 +278,48 @@
                         "tls": {
                             "type": "array"
                         }
-                    },
-                    "type": "object"
+                    }
                 },
                 "prePuller": {
+                    "type": "object",
                     "properties": {
                         "continuous": {
+                            "type": "object",
                             "properties": {
                                 "enabled": {
                                     "type": "boolean"
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "hook": {
+                            "type": "object",
                             "properties": {
                                 "enabled": {
                                     "type": "boolean"
                                 }
-                            },
-                            "type": "object"
+                            }
                         }
-                    },
-                    "type": "object"
+                    }
                 },
                 "proxy": {
+                    "type": "object",
                     "properties": {
                         "chp": {
+                            "type": "object",
                             "properties": {
                                 "containerSecurityContext": {
+                                    "type": "object",
                                     "properties": {
                                         "allowPrivilegeEscalation": {
                                             "type": "boolean"
                                         }
-                                    },
-                                    "type": "object"
+                                    }
                                 },
                                 "resources": {
+                                    "type": "object",
                                     "properties": {
                                         "limits": {
+                                            "type": "object",
                                             "properties": {
                                                 "cpu": {
                                                     "type": "string"
@@ -297,10 +327,10 @@
                                                 "memory": {
                                                     "type": "string"
                                                 }
-                                            },
-                                            "type": "object"
+                                            }
                                         },
                                         "requests": {
+                                            "type": "object",
                                             "properties": {
                                                 "cpu": {
                                                     "type": "string"
@@ -308,110 +338,87 @@
                                                 "memory": {
                                                     "type": "string"
                                                 }
-                                            },
-                                            "type": "object"
+                                            }
                                         }
-                                    },
-                                    "type": "object"
+                                    }
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "service": {
+                            "type": "object",
                             "properties": {
                                 "type": {
                                     "type": "string"
                                 }
-                            },
-                            "type": "object"
+                            }
                         }
-                    },
-                    "type": "object"
+                    }
                 },
                 "scheduling": {
+                    "type": "object",
                     "properties": {
                         "podPriority": {
+                            "type": "object",
                             "properties": {
                                 "enabled": {
                                     "type": "boolean"
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "userPlaceholder": {
+                            "type": "object",
                             "properties": {
                                 "enabled": {
                                     "type": "boolean"
                                 }
-                            },
-                            "type": "object"
+                            }
                         },
                         "userScheduler": {
+                            "type": "object",
                             "properties": {
                                 "enabled": {
                                     "type": "boolean"
                                 }
-                            },
-                            "type": "object"
+                            }
                         }
-                    },
-                    "type": "object"
+                    }
                 },
                 "singleuser": {
+                    "type": "object",
                     "properties": {
                         "cloudMetadata": {
+                            "type": "object",
                             "properties": {
                                 "blockWithIptables": {
                                     "type": "boolean"
                                 }
-                            },
-                            "type": "object"
-                        },
-                        "cpu": {
-                            "properties": {
-                                "guarantee": {
-                                    "type": "integer"
-                                },
-                                "limit": {
-                                    "type": "integer"
-                                }
-                            },
-                            "type": "object"
+                            }
                         },
                         "extraEnv": {
+                            "type": "object",
                             "properties": {
                                 "PYDEVD_DISABLE_FILE_VALIDATION": {
                                     "type": "string"
                                 }
-                            },
-                            "type": "object"
-                        },
-                        "memory": {
-                            "properties": {
-                                "guarantee": {
-                                    "type": "string"
-                                },
-                                "limit": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
+                            }
                         },
                         "podNameTemplate": {
                             "type": "string"
                         },
                         "storage": {
+                            "type": "object",
                             "properties": {
                                 "capacity": {
                                     "type": "string"
                                 },
                                 "dynamic": {
+                                    "type": "object",
                                     "properties": {
                                         "storageAccessModes": {
+                                            "type": "array",
                                             "items": {
                                                 "type": "string"
-                                            },
-                                            "type": "array"
+                                            }
                                         },
                                         "storageClass": {
                                             "type": "string"
@@ -419,33 +426,29 @@
                                         "volumeNameTemplate": {
                                             "type": "string"
                                         }
-                                    },
-                                    "type": "object"
+                                    }
                                 }
-                            },
-                            "type": "object"
+                            }
                         }
-                    },
-                    "type": "object"
+                    }
                 }
-            },
-            "type": "object"
+            }
         },
         "nameOverride": {
             "type": "string"
         },
         "persistence": {
+            "type": "object",
             "properties": {
                 "createPVC": {
                     "type": "array"
                 }
-            },
-            "type": "object"
+            }
         },
         "serviceAccount": {
+            "type": "object",
             "properties": {
                 "annotations": {
-                    "properties": {},
                     "type": "object"
                 },
                 "automount": {
@@ -457,9 +460,7 @@
                 "name": {
                     "type": "string"
                 }
-            },
-            "type": "object"
+            }
         }
-    },
-    "type": "object"
+    }
 }

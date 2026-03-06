@@ -1,3 +1,4 @@
 helix*.tgz
 datalab-local.yaml
 update-helix-chart.ps1
+charts/helix/tests/*_values.yaml

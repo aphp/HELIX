@@ -22,6 +22,7 @@ configuration:
     # @section -- HELIX settings
     # @default -- No override of existing Z2JHK8S Chart Configuration.
     singleuser:
+
       # -- Supports UID/GID manipulation to match custom volume persmisisons
       # @section -- HELIX settings
       # @default -- No override of existing Z2JHK8S Chart Configuration.
@@ -59,18 +60,34 @@ configuration:
           # configuration.jupyterhub.profiles.user[0].imagePullPolicy -- Image's Pull Policy.
           # @section -- HELIX settings
           imagePullPolicy: "Always"
+          cpu_limit: 5.1
+          cpu_guarantee: 2.1
+          memory_limit: "8G"
+          memory_guarantee: "4G"
         - displayName: "Jupyter EDS OCAML Notebook"
           slug: "eds-ocaml-notebook"
           image: "ghcr.io/aphp/base-ocaml-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
+          cpu_limit: 5.10
+          cpu_guarantee: 2.1
+          memory_limit: "8G"
+          memory_guarantee: "4G"
         - displayName: "Jupyter Minimal Notebook"
           slug: "minimal"
           image: "quay.io/jupyter/minimal-notebook:latest"
           imagePullPolicy: "Always"
+          cpu_limit: 5.1
+          cpu_guarantee: 2.1
+          memory_limit: "8G"
+          memory_guarantee: "4G"
         - displayName: "Jupyter Datascience Notebook"
           slug: "datascience"
           image: "quay.io/jupyter/datascience-notebook:latest"
           imagePullPolicy: "Always"
+          cpu_limit: 5.1
+          cpu_guarantee: 2.1
+          memory_limit: "8G"
+          memory_guarantee: "4G"
 
       # -- Collaboration profiles, used when a user spawns a collaborative JLab.
       # @section -- HELIX settings
@@ -88,10 +105,18 @@ configuration:
           # configuration.jupyterhub.profiles.collaboration[0].imagePullPolicy -- Image's Pull Policy.
           # @section -- HELIX settings
           imagePullPolicy: "Always"
+          cpu_limit: 5.1
+          cpu_guarantee: 2.1
+          memory_limit: "8G"
+          memory_guarantee: "4G"
         - displayName: "Jupyter EDS OCAML Notebook"
           slug: "eds-ocaml-notebook"
           image: "ghcr.io/aphp/base-ocaml-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
+          cpu_limit: 5.1
+          cpu_guarantee: 2.1
+          memory_limit: "8G"
+          memory_guarantee: "4G"
 
 # Settings related to persistence management across the HELIX's applications.
 persistence:
@@ -297,8 +322,8 @@ jupyterhub:
   singleuser:
     # -- Passthrough configuration for KubeSpawner.pod_name_template.
     # @section -- JupyterHub Chart settings
-    # @default -- "jupyter-{unescaped_username}"
-    podNameTemplate: "jupyter-{unescaped_username}"
+    # @default -- "helix-{unescaped_username}"
+    podNameTemplate: "helix-{unescaped_username}"
 
     cloudMetadata:
       blockWithIptables: false
@@ -334,9 +359,3 @@ jupyterhub:
       # @default -- 5Gi
       capacity: "5Gi"
 
-    cpu:
-      limit: 5
-      guarantee: 2
-    memory:
-      limit: "16G"
-      guarantee: "8G"
