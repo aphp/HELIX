@@ -41,6 +41,18 @@ async def generate_profile_list(spawner):
 				'cpu_guarantee': {{- $profile.cpu_guarantee }},
 				'mem_limit': '{{- $profile.memory_limit }}',
 				'mem_guarantee': '{{- $profile.memory_guarantee }}', 
+				'pod_security_context':{
+					'runAsNonRoot': True,
+					"seccompProfile": {
+            			"type": "RuntimeDefault"
+						},					
+					},
+				"container_security_context": {
+					"allowPrivilegeEscalation": False,
+					"capabilities": {
+						"drop": ["ALL"],
+					},
+				},
 			},
 		},
 		{{- end }}
@@ -59,6 +71,18 @@ async def generate_profile_list(spawner):
 				'cpu_guarantee': {{- $profile.cpu_guarantee }},
 				'mem_limit': '{{- $profile.memory_limit }}',
 				'mem_guarantee': '{{- $profile.memory_guarantee }}', 
+				'pod_security_context':{
+					'runAsNonRoot': True,
+					"seccompProfile": {
+            			"type": "RuntimeDefault"
+						},
+				},
+				"container_security_context": {
+					"allowPrivilegeEscalation": False,
+					"capabilities": {
+						"drop": ["ALL"],
+					},
+				},
 			},
 		},
 		{{- end }}
