@@ -197,9 +197,11 @@ jupyterhub:
       requests:
         memory: "2Gi"
         cpu: "0.5"
+        ephemeral-storage: 1Gi
       limits:
         memory: "4Gi"
         cpu: "1.5"
+        ephemeral-storage: 2Gi
 
     containerSecurityContext:
       readOnlyRootFilesystem: true
@@ -290,9 +292,11 @@ jupyterhub:
         requests:
           memory: "2Gi"
           cpu: "0.5"
+          ephemeral-storage: 1Gi
         limits:
           memory: "4Gi"
           cpu: "1.5"
+          ephemeral-storage: 2Gi
 
     service:
       # -- Default ClusterIP. See the Kubernetes docs to learn more about service types.
