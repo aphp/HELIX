@@ -197,18 +197,9 @@ jupyterhub:
       requests:
         memory: "2Gi"
         cpu: "0.5"
-        ephemeral-storage: 1Gi
       limits:
         memory: "4Gi"
-        cpu: "1.5"
-        ephemeral-storage: 2Gi
-
-    containerSecurityContext:
-      readOnlyRootFilesystem: true
-
-    labels:
-      aphp.fr/env: dev
-      aphp.fr/app: jupyter-hub
+        cpu: "1.5"    
 
     # -- Enforce prometheus scrapper to be authenticated to this JupyterHub instance.
     # @section -- JupyterHub Chart settings
@@ -280,23 +271,16 @@ jupyterhub:
 
 
   proxy:
-    labels:
-      aphp.fr/env: dev
-      aphp.fr/app: jupyter-proxy
-      
     chp:
       containerSecurityContext: 
         allowPrivilegeEscalation: false
-        readOnlyRootFilesystem: true
       resources:
         requests:
           memory: "2Gi"
           cpu: "0.5"
-          ephemeral-storage: 1Gi
         limits:
           memory: "4Gi"
           cpu: "1.5"
-          ephemeral-storage: 2Gi
 
     service:
       # -- Default ClusterIP. See the Kubernetes docs to learn more about service types.
@@ -346,13 +330,6 @@ jupyterhub:
 
     extraEnv:
       PYDEVD_DISABLE_FILE_VALIDATION: "1"
-
-    extraLabels:
-      aphp.fr/env: dev
-      aphp.fr/app: jupyter-lab
-
-    allowPrivilegeEscalation: false
-
 
     # This section configures KubeSpawner directly to some extent but also indirectly through 
     # Helm chart specific configuration options such as singleuser.storage.type.
