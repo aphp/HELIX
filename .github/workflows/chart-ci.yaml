@@ -1,4 +1,4 @@
-name: helix-helmchart-ci-dev
+name: helix-helmchart-ci
 run-name: HELIX Helm Chart CI triggered by @${{ github.actor }}
 
 on:
