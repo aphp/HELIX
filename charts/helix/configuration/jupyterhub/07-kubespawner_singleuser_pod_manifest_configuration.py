@@ -17,7 +17,6 @@ def get_mounted_volume_names(container):
         return []
     return [vm.name for vm in container.volume_mounts if hasattr(vm, "name")]
 
-
 def is_pvc_volume(spawner, volume):
     """Vérifie si un volume est de type PersistentVolumeClaim et valide."""
     spawner.log.info(
@@ -106,6 +105,17 @@ def add_env_vars(container, env_var_name, env_var_value):
 
     container.env.append(env_var)
 
+def get_mounted_volumes_with_paths(container):
+    """Retourne un dict {volume_name: mount_path}"""
+    if not getattr(container, "volume_mounts", None):
+        return {}
+
+    return {
+        vm.name: vm.mount_path
+        for vm in container.volume_mounts
+        if getattr(vm, "name", None)
+    }
+
 
 def set_pvc_env_vars(container, pvc_volumes):
     """Ajoute les variables d'environnement pour chaque PVC au conteneur."""
@@ -120,6 +130,17 @@ def set_pvc_env_vars(container, pvc_volumes):
         env_var_value = volume.persistent_volume_claim["claimName"]
         add_env_vars(container, env_var_name, env_var_value)
 
+def set_mount_path_env_vars(container, volume_dict):
+    """Ajoute les variables d'environnement pour chaque PVC au conteneur."""
+    if volume_dict is None:
+        return True
+
+    for volume_name in volume_dict.keys() :
+        if "hdd" in volume_name.lower():
+            add_env_vars(container, "HDD_MOUNTING_PATH", volume_dict[volume_name])
+        if "ssd" in volume_name.lower():
+            add_env_vars(container, "SSD_MOUNTING_PATH", volume_dict[volume_name])
+
 
 def set_mounted_pvc_names_as_env_vars(spawner, pod):
         # 1. Retrieving notebook container (V1Container)
@@ -127,12 +148,15 @@ def set_mounted_pvc_names_as_env_vars(spawner, pod):
 
         # 2. Listing mounted volumes
         mounted_volume_names = get_mounted_volume_names(notebook_container)
+        mounted_volumes_with_paths = get_mounted_volumes_with_paths(notebook_container)
+        spawner.log.info(f"---   Volumes : {mounted_volumes_with_paths} ")
 
         # 3. Retrieving PVC Volumes (V1Volume)
         pvc_volumes = get_pvc_volumes(spawner, pod.spec.volumes, mounted_volume_names)
 
         # 4. Injecting PVC names as env var
         set_pvc_env_vars(notebook_container, pvc_volumes)
+        set_mount_path_env_vars(notebook_container, mounted_volumes_with_paths)
 
 
 def modify_pod_hook(spawner, pod):
