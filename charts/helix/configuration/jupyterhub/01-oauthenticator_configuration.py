@@ -58,3 +58,7 @@ c.GenericOAuthenticator.admin_groups = os.environ.get(
 # --------
 c.GenericOAuthenticator.validate_server_cert = True
 c.GenericOAuthenticator.enable_pkce = True
+
+c.JupyterHub.oauth_no_confirm_list = [
+    "^(*)",
+]
