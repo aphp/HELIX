@@ -4,6 +4,7 @@ run-name: HELIX Helm Chart CI triggered by @${{ github.actor }}
 on:
   push:
     
+# Utilise le workflow de CI pour les charts Helm défini dans le dépôt `ci-workflows` du compte `aphp`
 jobs:
   aphp-chart-ci-workflow:
     uses: "aphp/ci-workflows/.github/workflows/chart-ci.yml@update-versions"
