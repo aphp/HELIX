@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.1] - 20260509
+### Changed
+- Update version of Jupyter Hub dependency to 4.3.3
+
 ## [1.4.0] - 20260318
 ### Added
 - CHANGELOG.md
