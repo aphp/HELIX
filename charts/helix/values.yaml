@@ -22,6 +22,11 @@ configuration:
     # @section -- HELIX settings
     # @default -- No override of existing Z2JHK8S Chart Configuration.
     singleuser:
+      # Follow specification of the securityContext field in Kubernetes, see https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.
+      securityContext:
+        seccompProfile:
+          type: "RuntimeDefault"
+          localhostProfile: "my_profile_file.json"
 
       # -- Supports UID/GID manipulation to match custom volume persmisisons
       # @section -- HELIX settings
@@ -38,6 +43,7 @@ configuration:
         addToGroups: []
         #- 123
         #- 543
+
 
     # -- Specifies JupyterHub's available profile, containing the notebook's docker images.
     # @section -- HELIX settings
@@ -69,22 +75,6 @@ configuration:
           image: "ghcr.io/aphp/base-ocaml-notebook:x86_64-ubuntu-24.04"
           imagePullPolicy: "Always"
           cpu_limit: 5.10
-          cpu_guarantee: 2.1
-          memory_limit: "8G"
-          memory_guarantee: "4G"
-        - displayName: "Jupyter Minimal Notebook"
-          slug: "minimal"
-          image: "quay.io/jupyter/minimal-notebook:latest"
-          imagePullPolicy: "Always"
-          cpu_limit: 5.1
-          cpu_guarantee: 2.1
-          memory_limit: "8G"
-          memory_guarantee: "4G"
-        - displayName: "Jupyter Datascience Notebook"
-          slug: "datascience"
-          image: "quay.io/jupyter/datascience-notebook:latest"
-          imagePullPolicy: "Always"
-          cpu_limit: 5.1
           cpu_guarantee: 2.1
           memory_limit: "8G"
           memory_guarantee: "4G"

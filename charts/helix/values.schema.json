@@ -93,6 +93,22 @@
                                             "type": "integer"
                                         }
                                     }
+                                },
+                                "securityContext": {
+                                    "type": "object",
+                                    "properties": {
+                                        "seccompProfile": {
+                                            "type": "object",
+                                            "properties": {
+                                                "localhostProfile": {
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
