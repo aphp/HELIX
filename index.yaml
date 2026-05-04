@@ -3,6 +3,26 @@ entries:
   helix:
   - apiVersion: v2
     appVersion: 1.0.0.beta3
+    created: "2026-05-04T14:35:24.744637393Z"
+    dependencies:
+    - condition: jupyterhub.enabled
+      name: jupyterhub
+      repository: https://hub.jupyter.org/helm-chart/
+      version: 4.3.4
+    description: A Helm chart deploying the helix, a collection of research-oriented
+      applications, organized in a cohesive way.
+    digest: f7367e5b38965caf610c8079a27c6833eb1391c569ec2f0a42b630aa506b2c8a
+    home: https://github.com/aphp/HELIX
+    kubeVersion: '>=v1.24.0-0'
+    name: helix
+    sources:
+    - https://github.com/aphp/HELIX
+    type: application
+    urls:
+    - https://github.com/aphp/HELIX/releases/download/helix-1.4.2-snapshot-820a174/helix-1.4.2-snapshot-820a174.tgz
+    version: 1.4.2-snapshot-820a174
+  - apiVersion: v2
+    appVersion: 1.0.0.beta3
     created: "2026-04-14T13:55:36.602399066Z"
     dependencies:
     - condition: jupyterhub.enabled
@@ -1321,4 +1341,4 @@ entries:
     urls:
     - https://github.com/aphp/HELIX/releases/download/helix-1.2.9/helix-1.2.9.tgz
     version: 1.2.9
-generated: "2026-04-14T13:55:36.602738008Z"
+generated: "2026-05-04T14:35:24.745073178Z"
