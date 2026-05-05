@@ -26,7 +26,8 @@ configuration:
       securityContext:
         seccompProfile:
           type: "RuntimeDefault"
-          localhostProfile: "my_profile_file.json"
+# -- This field is only relevant if the type field is set to "Localhost". It should be the name of a file containing a seccomp profile, which must be present in the container image. See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-the-seccomp-profile for more details.
+#          localhostProfile: ""
 
       # -- Supports UID/GID manipulation to match custom volume persmisisons
       # @section -- HELIX settings
