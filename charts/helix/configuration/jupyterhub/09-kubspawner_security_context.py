@@ -5,7 +5,7 @@ seccompProfile = {
     'type': seccompProfileType,
 }
 
-if ( seccompProfileType == "localhost" ):
+if ( seccompProfileType == "Localhost" ):
     seccompProfile.update({
         'localhostProfile': localhostProfile,
     })
