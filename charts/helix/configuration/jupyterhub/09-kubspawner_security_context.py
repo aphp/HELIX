@@ -1,5 +1,5 @@
-seccompProfileType = {{- .Values.configuration.jupyterhub.singleuser.securityContext.seccompProfile.type | default "RuntimeDefault" }}
-localhostProfile = {{- .Values.configuration.jupyterhub.singleuser.securityContext.seccompProfile.localhostProfile | default "" }}'
+seccompProfileType = '{{- .Values.configuration.jupyterhub.singleuser.securityContext.seccompProfile.type | default "RuntimeDefault" }}'
+localhostProfile = '{{- .Values.configuration.jupyterhub.singleuser.securityContext.seccompProfile.localhostProfile | default "" }}'
 
 seccompProfile = {
     'type': seccompProfileType,
