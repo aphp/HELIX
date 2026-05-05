@@ -1,19 +1,19 @@
-c.KubeSpawner.pod_security_context.update({{- if .Values.configuration.jupyterhub.singleuser.securityContext.seccompProfile.type == "Localhost" }} 
-{
+seccompProfileType = {{- .Values.configuration.jupyterhub.singleuser.securityContext.seccompProfile.type | default "RuntimeDefault" }}
+localhostProfile = {{- .Values.configuration.jupyterhub.singleuser.securityContext.seccompProfile.localhostProfile | default "" }}'
+
+seccompProfile = {
+    'type': seccompProfileType,
+}
+
+if ( seccompProfileType == "localhost" ):
+    seccompProfile.update({
+        'localhostProfile': localhostProfile,
+    })
+
+c.KubeSpawner.pod_security_context.update({
     'runAsNonRoot': True,
-    'seccompProfile': {
-        'type': 'localhost', 
-        'localhostProfile': '{{- .Values.configuration.jupyterhub.singleuser.securityContext.seccompProfile.localhostProfile | default "" }}',
-    },
+    'seccompProfile': seccompProfile
 })
-{{- else }}
-{
-    'runAsNonRoot': True,
-    'seccompProfile': {
-        'type': 'RuntimeDefault', 
-    },
-})
-{{- end }}
 
 c.KubeSpawner.container_security_context.update({
     'allowPrivilegeEscalation': False,
