@@ -321,6 +321,7 @@ jupyterhub:
 
     extraEnv:
       PYDEVD_DISABLE_FILE_VALIDATION: "1"
+      DISK_THRESHOLD: "70" # Percentage of usage before displaying a terminal notification
 
     # This section configures KubeSpawner directly to some extent but also indirectly through 
     # Helm chart specific configuration options such as singleuser.storage.type.
