@@ -158,6 +158,17 @@ def set_mounted_pvc_names_as_env_vars(spawner, pod):
         set_pvc_env_vars(notebook_container, pvc_volumes)
         set_mount_path_env_vars(notebook_container, mounted_volumes_with_paths)
 
+def set_customs_env_vars(spawner, pod):
+    notebook_container = get_notebook_container(pod.spec.containers)
+    try :
+        for name, value in notebook_container.extra_env.items():
+            if name == "PYDEVD_DISABLE_FILE_VALIDATION":
+                continue
+
+            add_env_vars(notebook_container, name, value)
+    except Exception as e:
+        spawner.log.error("ERROR\nImpossible to add some var env: %s", e)
+
 
 def modify_pod_hook(spawner, pod):
     """Modifie le manifeste du pod singleuser pour inclure dans le conteneur notebook le nom des PVCs monté en variable d'envirronement."""
@@ -167,6 +178,7 @@ def modify_pod_hook(spawner, pod):
         spawner.log.info(
         f"Injecting PVC names bounded to user {spawner.user.name} as environment variables")
         set_mounted_pvc_names_as_env_vars(spawner, pod)
+        set_customs_env_vars(spawner, pod)
 
 
     except Exception as e:
