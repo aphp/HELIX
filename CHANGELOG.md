@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.4] - 20260910
+### Changed
+- Update version of Jupyter Hub dependency to 4.4.2
+
 ## [1.4.3] - 20260910
 ### Changed
 - Update default values.yaml to improve performance when openning big files and reduce .jupyter_ystore.db size.
