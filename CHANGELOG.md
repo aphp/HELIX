@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.4.3] - 20260610
+## [1.4.3] - 20260910
 ### Changed
 - Update default values.yaml to improve performance when openning big files and reduce .jupyter_ystore.db size.
 
