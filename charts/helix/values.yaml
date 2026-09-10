@@ -321,6 +321,17 @@ jupyterhub:
 
     extraEnv:
       PYDEVD_DISABLE_FILE_VALIDATION: "1"
+      DISK_THRESHOLD: "70" # Percentage of usage before displaying a terminal notification
+
+    # Add extra configuration in your Jupyterlab
+    extraFiles:
+      collaboration-config:
+        mountPath: /etc/jupyter/jupyter_server_config.json
+        data:
+          SQLiteYStore:
+            squash_after_inactivity_of: 3600
+          YDocExtension:
+            document_load_progressively: true
 
     # This section configures KubeSpawner directly to some extent but also indirectly through 
     # Helm chart specific configuration options such as singleuser.storage.type.
