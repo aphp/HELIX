@@ -410,8 +410,45 @@
                         "extraEnv": {
                             "type": "object",
                             "properties": {
+                                "DISK_THRESHOLD": {
+                                    "type": "string"
+                                },
                                 "PYDEVD_DISABLE_FILE_VALIDATION": {
                                     "type": "string"
+                                }
+                            }
+                        },
+                        "extraFiles": {
+                            "type": "object",
+                            "properties": {
+                                "collaboration-config": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "SQLiteYStore": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "squash_after_inactivity_of": {
+                                                            "type": "integer"
+                                                        }
+                                                    }
+                                                },
+                                                "YDocExtension": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "document_load_progressively": {
+                                                            "type": "boolean"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "mountPath": {
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             }
                         },
