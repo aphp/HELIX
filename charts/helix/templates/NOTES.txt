@@ -1,4 +1,4 @@
-HELIX deployed! 
+HELIX deployed!
 
 You can connect to this HELIX application(s) with the following URL(s):
 {{- if .Values.jupyterhub.ingress.enabled }}

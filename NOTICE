@@ -3,11 +3,11 @@ This software contains the following dependencies developed by the Jupyter Proje
 - Helm Charts:
   - jupyterhub : https://github.com/jupyterhub/zero-to-jupyterhub-k8s
 
-Those dependencies are present in the "jupyterhub/zero-to-jupyterhub-k8s" github repository provided by the Jupyter Project under the Apache 2.0 license, 
+Those dependencies are present in the "jupyterhub/zero-to-jupyterhub-k8s" github repository provided by the Jupyter Project under the Apache 2.0 license,
 as stated by the following document : https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/main/LICENSE
 
 
-Furthermore, parts of those dependencies are falling under the BSD-3 Licence, as indicated by the following statement : 
+Furthermore, parts of those dependencies are falling under the BSD-3 Licence, as indicated by the following statement :
 
 BSD 3-Clause License
 

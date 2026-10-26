@@ -1,6 +1,6 @@
 persistence:
   createPVC:
-  - name: data-pvc 
+  - name: data-pvc
     storageClassName: "standard"
     accessMode: "ReadWriteOnce"
     size: "5Gi"
@@ -43,7 +43,7 @@ jupyterhub:
     config:
       Authenticator:
         admin_users:
-          - "admin1" 
+          - "admin1"
           - "admin2"
         allowed_users:
           - "helix-local"
