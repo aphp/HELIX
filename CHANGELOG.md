@@ -7,7 +7,7 @@
 ## [1.4.2] - 20260504
 ### Changed
 - Update version of Jupyter Hub dependency to 4.3.4
-- Expose seccompProfile for each profile (default used : RuntimeDefault) 
+- Expose seccompProfile for each profile (default used : RuntimeDefault)
 
 ## [1.4.1] - 20260409
 ### Changed
@@ -30,7 +30,7 @@
 ### Fixed
 - Fixed typo in comment in value.xml
 
-## [1.3.1] - 
+## [1.3.1] -
 
 ### Added
 - First release since the project was open-sourced
