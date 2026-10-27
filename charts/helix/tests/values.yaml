@@ -41,9 +41,9 @@ configuration:
     profiles:
       # -- Single-user profiles, used when a user spawns his own JLab environment.
       # @section -- HELIX settings
-      # @default -- APHP EDS Base and OCAML notebook profiles, alongside Jupyter Project official 
+      # @default -- APHP EDS Base and OCAML notebook profiles, alongside Jupyter Project official
       #             minimal and datascience notebooks
-      user: 
+      user:
         # configuration.jupyterhub.profiles.user[0].displayName -- Profile's name to be display to the user.
         # @section -- HELIX settings
         - displayName: "Jupyter EDS Base Notebook - Personnal - DEV"
@@ -111,7 +111,7 @@ serviceAccount:
 
 # JupyterHub Chart settings.
 jupyterhub:
-  # -- If true, enables the deployment of the JupyterHub Chart. 
+  # -- If true, enables the deployment of the JupyterHub Chart.
   # @section -- JupyterHub Chart settings
   # @default -- true
   enabled: true
@@ -148,7 +148,7 @@ jupyterhub:
 
 
   hub:
-    # -- Set custom image name, tag, pullPolicy, or pullSecrets for the pod. 
+    # -- Set custom image name, tag, pullPolicy, or pullSecrets for the pod.
     # @section -- JupyterHub Chart settings
     # @default -- Jupyterhub 4.1.6
     image:
@@ -163,16 +163,16 @@ jupyterhub:
         cpu: "0.5"
       limits:
         memory: "4Gi"
-        cpu: "1.5"    
+        cpu: "1.5"
 
     # -- Enforce prometheus scrapper to be authenticated to this JupyterHub instance.
     # @section -- JupyterHub Chart settings
     # @default -- false
-    authenticatePrometheus: false 
+    authenticatePrometheus: false
 
     baseUrl: "/jupyter"
     db:
-      # -- Type of database backend to use for the hub database. The Hub requires a 
+      # -- Type of database backend to use for the hub database. The Hub requires a
       #    persistent database to function, and this lets you specify where it should be stored.
       # @section -- JupyterHub Chart settings
       # @default -- "sqlite-pvc"
@@ -188,7 +188,7 @@ jupyterhub:
 
     # -- Extra environment variables that should be set for the hub pod.
     # @section -- JupyterHub Chart settings
-    # @default -- Sets the default URL the user is redirected to, and the name of the project. 
+    # @default -- Sets the default URL the user is redirected to, and the name of the project.
     extraEnv:
       PROJECT: "helix-local"
       JHUB_DEFAULT_URL: "/jupyter/hub/spawn/helix-local"
@@ -215,7 +215,7 @@ jupyterhub:
 
   scheduling:
     userScheduler:
-      # -- The user scheduler is making sure that user pods are scheduled tight on nodes, 
+      # -- The user scheduler is making sure that user pods are scheduled tight on nodes,
       #    this is useful for autoscaling of user node pools.
       # @section -- JupyterHub Chart settings
       # @default -- false
@@ -227,8 +227,8 @@ jupyterhub:
       # @default -- false
       enabled: false
     userPlaceholder:
-      # -- User placeholders simulate users but will thanks to PodPriority be evicted by the 
-      #    cluster autoscaler if a real user shows up. 
+      # -- User placeholders simulate users but will thanks to PodPriority be evicted by the
+      #    cluster autoscaler if a real user shows up.
       # @section -- JupyterHub Chart settings
       # @default -- false
       enabled: false
@@ -236,7 +236,7 @@ jupyterhub:
 
   proxy:
     chp:
-      containerSecurityContext: 
+      containerSecurityContext:
         allowPrivilegeEscalation: false
       resources:
         requests:
@@ -262,7 +262,7 @@ jupyterhub:
     hook:
     # -- See the optimization section for more details
     # @section -- JupyterHub Chart settings
-    # @default -- Disabled -- 
+    # @default -- Disabled --
       enabled: false
 
   cull:
@@ -305,7 +305,7 @@ jupyterhub:
           YDocExtension:
             document_load_progressively: true
 
-    # This section configures KubeSpawner directly to some extent but also indirectly through 
+    # This section configures KubeSpawner directly to some extent but also indirectly through
     # Helm chart specific configuration options such as singleuser.storage.type.
     storage:
       # -- Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically
@@ -313,12 +313,12 @@ jupyterhub:
       # @section -- JupyterHub Chart settings
       # @default -- Dynamic 5Gi PVC for the home volume.
       dynamic:
-        # -- Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically 
+        # -- Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically
         #    provision storage for the PVC that KubeSpawner will create.
         # @section -- JupyterHub Chart settings
         # @default -- "standard"
         storageClass: "standard"
-        # -- Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically 
+        # -- Configures KubeSpawner.storage_class, which can be an explicit StorageClass to dynamically
         #    provision storage for the PVC that KubeSpawner will create.
         # @section -- JupyterHub Chart settings
         # @default -- "volume-{username}{servername}"
@@ -332,5 +332,3 @@ jupyterhub:
       # @section -- JupyterHub Chart settings
       # @default -- 5Gi
       capacity: "5Gi"
-
-

@@ -2,7 +2,7 @@ apiVersion: v2
 name: helix
 description: A Helm chart deploying the helix, a collection of research-oriented applications, organized in a cohesive way.
 home: https://github.com/aphp/HELIX
-sources: 
+sources:
   - https://github.com/aphp/HELIX
 
 kubeVersion: ">=v1.24.0-0"
@@ -20,13 +20,13 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: "1.4.4"
+version: "1.4.5"
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "1.0.0.beta4"
+appVersion: "1.0.0.beta5"
 
 dependencies:
   - name: jupyterhub
