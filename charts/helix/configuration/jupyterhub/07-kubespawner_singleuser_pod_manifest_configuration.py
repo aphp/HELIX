@@ -187,4 +187,4 @@ def modify_pod_hook(spawner, pod):
     return pod
 
 
-c.KubeSpawner.modify_pod_hook = modify_pod_hook
+# c.KubeSpawner.modify_pod_hook = modify_pod_hook
